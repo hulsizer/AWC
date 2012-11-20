@@ -97,7 +97,8 @@
     self.scroll.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.scroll];
     
-    self.dummy = [[UIView alloc] initWithFrame:self.scroll.bounds];
+	CGSize temp = CGSizeMake(25*(1024.0f/13),25*(768.0f/10));
+    self.dummy = [[UIView alloc] initWithFrame:CGRectMake(0, 0, temp.width, temp.height)];
     [self.scrollSubView setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
     [self.scroll addSubview:self.dummy];
    
