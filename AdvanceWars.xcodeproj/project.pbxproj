@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		526197541653D93000B3821F /* CMVertexAttribArrayBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 526197531653D93000B3821F /* CMVertexAttribArrayBuffer.m */; };
+		526197581653DABE00B3821F /* CMEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 526197571653DABE00B3821F /* CMEffect.m */; };
 		AF9D1098164CAA0A00D513C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1097164CAA0A00D513C4 /* UIKit.framework */; };
 		AF9D109A164CAA0A00D513C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1099164CAA0A00D513C4 /* Foundation.framework */; };
 		AF9D109C164CAA0A00D513C4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D109B164CAA0A00D513C4 /* CoreGraphics.framework */; };
@@ -14,18 +16,78 @@
 		AF9D10A0164CAA0A00D513C4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D109F164CAA0A00D513C4 /* OpenGLES.framework */; };
 		AF9D10A6164CAA0A00D513C4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AF9D10A4164CAA0A00D513C4 /* InfoPlist.strings */; };
 		AF9D10A8164CAA0A00D513C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D10A7164CAA0A00D513C4 /* main.m */; };
-		AF9D10AC164CAA0A00D513C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D10AB164CAA0A00D513C4 /* AppDelegate.m */; };
 		AF9D10AE164CAA0A00D513C4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AF9D10AD164CAA0A00D513C4 /* Default.png */; };
 		AF9D10B0164CAA0A00D513C4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF9D10AF164CAA0A00D513C4 /* Default@2x.png */; };
 		AF9D10B2164CAA0A00D513C4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF9D10B1164CAA0A00D513C4 /* Default-568h@2x.png */; };
-		AF9D10B4164CAA0A00D513C4 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D10B3164CAA0A00D513C4 /* Shader.fsh */; };
-		AF9D10B6164CAA0A00D513C4 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D10B5164CAA0A00D513C4 /* Shader.vsh */; };
-		AF9D10B9164CAA0A00D513C4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D10B8164CAA0A00D513C4 /* ViewController.m */; };
-		AF9D10BC164CAA0A00D513C4 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF9D10BA164CAA0A00D513C4 /* ViewController_iPhone.xib */; };
-		AF9D10BF164CAA0A00D513C4 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF9D10BD164CAA0A00D513C4 /* ViewController_iPad.xib */; };
+		AF9D120F164D3F6600D513C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11CE164D3F6600D513C4 /* AppDelegate.m */; };
+		AF9D1210164D3F6600D513C4 /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11D0164D3F6600D513C4 /* Shader.fsh */; };
+		AF9D1211164D3F6600D513C4 /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11D1164D3F6600D513C4 /* Shader.vsh */; };
+		AF9D1212164D3F6600D513C4 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11D4164D3F6600D513C4 /* lapi.c */; };
+		AF9D1213164D3F6600D513C4 /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11D6164D3F6600D513C4 /* lauxlib.c */; };
+		AF9D1214164D3F6600D513C4 /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11D8164D3F6600D513C4 /* lbaselib.c */; };
+		AF9D1215164D3F6600D513C4 /* lbitlib.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11D9164D3F6600D513C4 /* lbitlib.c */; };
+		AF9D1216164D3F6600D513C4 /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11DA164D3F6600D513C4 /* lcode.c */; };
+		AF9D1217164D3F6600D513C4 /* lcorolib.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11DC164D3F6600D513C4 /* lcorolib.c */; };
+		AF9D1218164D3F6600D513C4 /* lctype.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11DD164D3F6600D513C4 /* lctype.c */; };
+		AF9D1219164D3F6600D513C4 /* ldblib.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11DF164D3F6600D513C4 /* ldblib.c */; };
+		AF9D121A164D3F6600D513C4 /* ldebug.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11E0164D3F6600D513C4 /* ldebug.c */; };
+		AF9D121B164D3F6600D513C4 /* ldo.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11E2164D3F6600D513C4 /* ldo.c */; };
+		AF9D121C164D3F6600D513C4 /* ldump.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11E4164D3F6600D513C4 /* ldump.c */; };
+		AF9D121D164D3F6600D513C4 /* lfunc.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11E5164D3F6600D513C4 /* lfunc.c */; };
+		AF9D121E164D3F6600D513C4 /* lgc.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11E7164D3F6600D513C4 /* lgc.c */; };
+		AF9D121F164D3F6600D513C4 /* linit.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11E9164D3F6600D513C4 /* linit.c */; };
+		AF9D1220164D3F6600D513C4 /* liolib.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11EA164D3F6600D513C4 /* liolib.c */; };
+		AF9D1221164D3F6600D513C4 /* llex.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11EB164D3F6600D513C4 /* llex.c */; };
+		AF9D1222164D3F6600D513C4 /* lmathlib.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11EE164D3F6600D513C4 /* lmathlib.c */; };
+		AF9D1223164D3F6600D513C4 /* lmem.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11EF164D3F6600D513C4 /* lmem.c */; };
+		AF9D1224164D3F6600D513C4 /* loadlib.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11F1164D3F6600D513C4 /* loadlib.c */; };
+		AF9D1225164D3F6600D513C4 /* lobject.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11F2164D3F6600D513C4 /* lobject.c */; };
+		AF9D1226164D3F6600D513C4 /* lopcodes.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11F4164D3F6600D513C4 /* lopcodes.c */; };
+		AF9D1227164D3F6600D513C4 /* loslib.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11F6164D3F6600D513C4 /* loslib.c */; };
+		AF9D1228164D3F6600D513C4 /* lparser.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11F7164D3F6600D513C4 /* lparser.c */; };
+		AF9D1229164D3F6600D513C4 /* lstate.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11F9164D3F6600D513C4 /* lstate.c */; };
+		AF9D122A164D3F6600D513C4 /* lstring.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11FB164D3F6600D513C4 /* lstring.c */; };
+		AF9D122B164D3F6600D513C4 /* lstrlib.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11FD164D3F6600D513C4 /* lstrlib.c */; };
+		AF9D122C164D3F6600D513C4 /* ltable.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D11FE164D3F6600D513C4 /* ltable.c */; };
+		AF9D122D164D3F6600D513C4 /* ltablib.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D1200164D3F6600D513C4 /* ltablib.c */; };
+		AF9D122E164D3F6600D513C4 /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D1201164D3F6600D513C4 /* ltm.c */; };
+		AF9D122F164D3F6600D513C4 /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D1207164D3F6600D513C4 /* lundump.c */; };
+		AF9D1230164D3F6600D513C4 /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D1209164D3F6600D513C4 /* lvm.c */; };
+		AF9D1231164D3F6600D513C4 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = AF9D120B164D3F6600D513C4 /* lzio.c */; };
+		AF9D123A164D416B00D513C4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D1237164D416B00D513C4 /* ViewController.m */; };
+		AF9D123E164D419400D513C4 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF9D123C164D419400D513C4 /* ViewController_iPad.xib */; };
+		AF9D123F164D419400D513C4 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF9D123D164D419400D513C4 /* ViewController_iPhone.xib */; };
+		AF9D1242164D425A00D513C4 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D1241164D425A00D513C4 /* Constants.m */; };
+		AF9D124B164DDED100D513C4 /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D124A164DDED100D513C4 /* ScriptRunner.m */; };
+		AF9D12651651F47300D513C4 /* TileDrawableComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D12641651F47300D513C4 /* TileDrawableComponent.m */; };
+		AF9D12691651F55000D513C4 /* ShaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D12681651F55000D513C4 /* ShaderManager.m */; };
+		AF9D126C1651F71A00D513C4 /* Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D126B1651F71A00D513C4 /* Shader.m */; };
+		AF9D127416574DEC00D513C4 /* GraphicsRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D127316574DEC00D513C4 /* GraphicsRenderer.m */; };
+		AF9D12771657506000D513C4 /* TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D12761657506000D513C4 /* TextureManager.m */; };
+		AF9D127A1657547900D513C4 /* TextureGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D12791657547900D513C4 /* TextureGroup.m */; };
+		AF9D127D165808BB00D513C4 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D127C165808BB00D513C4 /* Tile.m */; };
+		AF9D128816582F8F00D513C4 /* GraphicsHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D128716582F8F00D513C4 /* GraphicsHelpers.m */; };
+		AF9D128B165830F100D513C4 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D128A165830F100D513C4 /* Scene.m */; };
+		AF9D128E16583D4A00D513C4 /* basic.fsh in Sources */ = {isa = PBXBuildFile; fileRef = AF9D128C16583D4900D513C4 /* basic.fsh */; };
+		AF9D128F16583D4A00D513C4 /* basic.vsh in Sources */ = {isa = PBXBuildFile; fileRef = AF9D128D16583D4900D513C4 /* basic.vsh */; };
+		AF9D12901658427C00D513C4 /* basic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D128C16583D4900D513C4 /* basic.fsh */; };
+		AF9D12911658427F00D513C4 /* basic.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D128D16583D4900D513C4 /* basic.vsh */; };
+		AF9D1298165B134900D513C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1297165B134900D513C4 /* QuartzCore.framework */; };
+		AFCFD65B16502B5600980802 /* Component.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD65A16502B5600980802 /* Component.m */; };
+		AFCFD65E1650488C00980802 /* PositionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD65D1650488C00980802 /* PositionComponent.m */; };
+		AFCFD6611650489D00980802 /* DrawableComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD6601650489D00980802 /* DrawableComponent.m */; };
+		AFCFD6651650492300980802 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD6641650492300980802 /* Level.m */; };
+		AFCFD669165070F300980802 /* GameDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD667165070F300980802 /* GameDirector.m */; };
+		AFCFD66A165070F300980802 /* GameDirector.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFCFD668165070F300980802 /* GameDirector.xib */; };
+		AFCFD6711650892E00980802 /* tile.lua in Resources */ = {isa = PBXBuildFile; fileRef = AFCFD66F1650892E00980802 /* tile.lua */; };
+		AFCFD6721650892E00980802 /* testLevel.lua in Resources */ = {isa = PBXBuildFile; fileRef = AFCFD6701650892E00980802 /* testLevel.lua */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		526197521653D93000B3821F /* CMVertexAttribArrayBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMVertexAttribArrayBuffer.h; path = Helper/CMVertexAttribArrayBuffer.h; sourceTree = "<group>"; };
+		526197531653D93000B3821F /* CMVertexAttribArrayBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMVertexAttribArrayBuffer.m; path = Helper/CMVertexAttribArrayBuffer.m; sourceTree = "<group>"; };
+		526197561653DABE00B3821F /* CMEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMEffect.h; path = Helper/CMEffect.h; sourceTree = "<group>"; };
+		526197571653DABE00B3821F /* CMEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMEffect.m; path = Helper/CMEffect.m; sourceTree = "<group>"; };
 		AF9D1093164CAA0A00D513C4 /* AdvanceWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdvanceWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF9D1097164CAA0A00D513C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AF9D1099164CAA0A00D513C4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -36,17 +98,113 @@
 		AF9D10A5164CAA0A00D513C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AF9D10A7164CAA0A00D513C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AF9D10A9164CAA0A00D513C4 /* AdvanceWars-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdvanceWars-Prefix.pch"; sourceTree = "<group>"; };
-		AF9D10AA164CAA0A00D513C4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		AF9D10AB164CAA0A00D513C4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AF9D10AD164CAA0A00D513C4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		AF9D10AF164CAA0A00D513C4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		AF9D10B1164CAA0A00D513C4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		AF9D10B3164CAA0A00D513C4 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
-		AF9D10B5164CAA0A00D513C4 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
-		AF9D10B7164CAA0A00D513C4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		AF9D10B8164CAA0A00D513C4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		AF9D10BB164CAA0A00D513C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		AF9D10BE164CAA0A00D513C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		AF9D11CD164D3F6600D513C4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AF9D11CE164D3F6600D513C4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AF9D11D0164D3F6600D513C4 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		AF9D11D1164D3F6600D513C4 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		AF9D11D4164D3F6600D513C4 /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
+		AF9D11D5164D3F6600D513C4 /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lapi.h; sourceTree = "<group>"; };
+		AF9D11D6164D3F6600D513C4 /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lauxlib.c; sourceTree = "<group>"; };
+		AF9D11D7164D3F6600D513C4 /* lauxlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lauxlib.h; sourceTree = "<group>"; };
+		AF9D11D8164D3F6600D513C4 /* lbaselib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lbaselib.c; sourceTree = "<group>"; };
+		AF9D11D9164D3F6600D513C4 /* lbitlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lbitlib.c; sourceTree = "<group>"; };
+		AF9D11DA164D3F6600D513C4 /* lcode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lcode.c; sourceTree = "<group>"; };
+		AF9D11DB164D3F6600D513C4 /* lcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lcode.h; sourceTree = "<group>"; };
+		AF9D11DC164D3F6600D513C4 /* lcorolib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lcorolib.c; sourceTree = "<group>"; };
+		AF9D11DD164D3F6600D513C4 /* lctype.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lctype.c; sourceTree = "<group>"; };
+		AF9D11DE164D3F6600D513C4 /* lctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lctype.h; sourceTree = "<group>"; };
+		AF9D11DF164D3F6600D513C4 /* ldblib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldblib.c; sourceTree = "<group>"; };
+		AF9D11E0164D3F6600D513C4 /* ldebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldebug.c; sourceTree = "<group>"; };
+		AF9D11E1164D3F6600D513C4 /* ldebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ldebug.h; sourceTree = "<group>"; };
+		AF9D11E2164D3F6600D513C4 /* ldo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldo.c; sourceTree = "<group>"; };
+		AF9D11E3164D3F6600D513C4 /* ldo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ldo.h; sourceTree = "<group>"; };
+		AF9D11E4164D3F6600D513C4 /* ldump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldump.c; sourceTree = "<group>"; };
+		AF9D11E5164D3F6600D513C4 /* lfunc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lfunc.c; sourceTree = "<group>"; };
+		AF9D11E6164D3F6600D513C4 /* lfunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lfunc.h; sourceTree = "<group>"; };
+		AF9D11E7164D3F6600D513C4 /* lgc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lgc.c; sourceTree = "<group>"; };
+		AF9D11E8164D3F6600D513C4 /* lgc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lgc.h; sourceTree = "<group>"; };
+		AF9D11E9164D3F6600D513C4 /* linit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = linit.c; sourceTree = "<group>"; };
+		AF9D11EA164D3F6600D513C4 /* liolib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = liolib.c; sourceTree = "<group>"; };
+		AF9D11EB164D3F6600D513C4 /* llex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = llex.c; sourceTree = "<group>"; };
+		AF9D11EC164D3F6600D513C4 /* llex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = llex.h; sourceTree = "<group>"; };
+		AF9D11ED164D3F6600D513C4 /* llimits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = llimits.h; sourceTree = "<group>"; };
+		AF9D11EE164D3F6600D513C4 /* lmathlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lmathlib.c; sourceTree = "<group>"; };
+		AF9D11EF164D3F6600D513C4 /* lmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lmem.c; sourceTree = "<group>"; };
+		AF9D11F0164D3F6600D513C4 /* lmem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lmem.h; sourceTree = "<group>"; };
+		AF9D11F1164D3F6600D513C4 /* loadlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loadlib.c; sourceTree = "<group>"; };
+		AF9D11F2164D3F6600D513C4 /* lobject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lobject.c; sourceTree = "<group>"; };
+		AF9D11F3164D3F6600D513C4 /* lobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lobject.h; sourceTree = "<group>"; };
+		AF9D11F4164D3F6600D513C4 /* lopcodes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lopcodes.c; sourceTree = "<group>"; };
+		AF9D11F5164D3F6600D513C4 /* lopcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lopcodes.h; sourceTree = "<group>"; };
+		AF9D11F6164D3F6600D513C4 /* loslib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loslib.c; sourceTree = "<group>"; };
+		AF9D11F7164D3F6600D513C4 /* lparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lparser.c; sourceTree = "<group>"; };
+		AF9D11F8164D3F6600D513C4 /* lparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lparser.h; sourceTree = "<group>"; };
+		AF9D11F9164D3F6600D513C4 /* lstate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lstate.c; sourceTree = "<group>"; };
+		AF9D11FA164D3F6600D513C4 /* lstate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lstate.h; sourceTree = "<group>"; };
+		AF9D11FB164D3F6600D513C4 /* lstring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lstring.c; sourceTree = "<group>"; };
+		AF9D11FC164D3F6600D513C4 /* lstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lstring.h; sourceTree = "<group>"; };
+		AF9D11FD164D3F6600D513C4 /* lstrlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lstrlib.c; sourceTree = "<group>"; };
+		AF9D11FE164D3F6600D513C4 /* ltable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltable.c; sourceTree = "<group>"; };
+		AF9D11FF164D3F6600D513C4 /* ltable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltable.h; sourceTree = "<group>"; };
+		AF9D1200164D3F6600D513C4 /* ltablib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltablib.c; sourceTree = "<group>"; };
+		AF9D1201164D3F6600D513C4 /* ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltm.c; sourceTree = "<group>"; };
+		AF9D1202164D3F6600D513C4 /* ltm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltm.h; sourceTree = "<group>"; };
+		AF9D1203164D3F6600D513C4 /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
+		AF9D1204164D3F6600D513C4 /* lua.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lua.hpp; sourceTree = "<group>"; };
+		AF9D1205164D3F6600D513C4 /* luaconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luaconf.h; sourceTree = "<group>"; };
+		AF9D1206164D3F6600D513C4 /* lualib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lualib.h; sourceTree = "<group>"; };
+		AF9D1207164D3F6600D513C4 /* lundump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lundump.c; sourceTree = "<group>"; };
+		AF9D1208164D3F6600D513C4 /* lundump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lundump.h; sourceTree = "<group>"; };
+		AF9D1209164D3F6600D513C4 /* lvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lvm.c; sourceTree = "<group>"; };
+		AF9D120A164D3F6600D513C4 /* lvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lvm.h; sourceTree = "<group>"; };
+		AF9D120B164D3F6600D513C4 /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lzio.c; sourceTree = "<group>"; };
+		AF9D120C164D3F6600D513C4 /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lzio.h; sourceTree = "<group>"; };
+		AF9D1236164D416B00D513C4 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		AF9D1237164D416B00D513C4 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AF9D123C164D419400D513C4 /* ViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPad.xib; sourceTree = "<group>"; };
+		AF9D123D164D419400D513C4 /* ViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPhone.xib; sourceTree = "<group>"; };
+		AF9D1240164D425A00D513C4 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Shared/Constants.h; sourceTree = "<group>"; };
+		AF9D1241164D425A00D513C4 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Shared/Constants.m; sourceTree = "<group>"; };
+		AF9D1249164DDED100D513C4 /* ScriptRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptRunner.h; path = Helper/ScriptRunner.h; sourceTree = "<group>"; };
+		AF9D124A164DDED100D513C4 /* ScriptRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptRunner.m; path = Helper/ScriptRunner.m; sourceTree = "<group>"; };
+		AF9D125D1651F3EE00D513C4 /* Vertices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vertices.h; sourceTree = "<group>"; };
+		AF9D12631651F47300D513C4 /* TileDrawableComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileDrawableComponent.h; sourceTree = "<group>"; };
+		AF9D12641651F47300D513C4 /* TileDrawableComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileDrawableComponent.m; sourceTree = "<group>"; };
+		AF9D12671651F55000D513C4 /* ShaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderManager.h; sourceTree = "<group>"; };
+		AF9D12681651F55000D513C4 /* ShaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaderManager.m; sourceTree = "<group>"; };
+		AF9D126A1651F71A00D513C4 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		AF9D126B1651F71A00D513C4 /* Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shader.m; sourceTree = "<group>"; };
+		AF9D127216574DEC00D513C4 /* GraphicsRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsRenderer.h; sourceTree = "<group>"; };
+		AF9D127316574DEC00D513C4 /* GraphicsRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicsRenderer.m; sourceTree = "<group>"; };
+		AF9D12751657506000D513C4 /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
+		AF9D12761657506000D513C4 /* TextureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureManager.m; sourceTree = "<group>"; };
+		AF9D12781657547900D513C4 /* TextureGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureGroup.h; sourceTree = "<group>"; };
+		AF9D12791657547900D513C4 /* TextureGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureGroup.m; sourceTree = "<group>"; };
+		AF9D127B165808BB00D513C4 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
+		AF9D127C165808BB00D513C4 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tile.m; sourceTree = "<group>"; };
+		AF9D128616582F8F00D513C4 /* GraphicsHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GraphicsHelpers.h; path = Helper/GraphicsHelpers.h; sourceTree = "<group>"; };
+		AF9D128716582F8F00D513C4 /* GraphicsHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GraphicsHelpers.m; path = Helper/GraphicsHelpers.m; sourceTree = "<group>"; };
+		AF9D1289165830F100D513C4 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		AF9D128A165830F100D513C4 /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
+		AF9D128C16583D4900D513C4 /* basic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.fsh; sourceTree = "<group>"; };
+		AF9D128D16583D4900D513C4 /* basic.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.vsh; sourceTree = "<group>"; };
+		AF9D1297165B134900D513C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AFCFD65916502B5600980802 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
+		AFCFD65A16502B5600980802 /* Component.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Component.m; sourceTree = "<group>"; };
+		AFCFD65C1650488C00980802 /* PositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionComponent.h; sourceTree = "<group>"; };
+		AFCFD65D1650488C00980802 /* PositionComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionComponent.m; sourceTree = "<group>"; };
+		AFCFD65F1650489D00980802 /* DrawableComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableComponent.h; sourceTree = "<group>"; };
+		AFCFD6601650489D00980802 /* DrawableComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawableComponent.m; sourceTree = "<group>"; };
+		AFCFD6631650492300980802 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Level.h; path = Levels/Level.h; sourceTree = "<group>"; };
+		AFCFD6641650492300980802 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Level.m; path = Levels/Level.m; sourceTree = "<group>"; };
+		AFCFD666165070F300980802 /* GameDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDirector.h; sourceTree = "<group>"; };
+		AFCFD667165070F300980802 /* GameDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDirector.m; sourceTree = "<group>"; };
+		AFCFD668165070F300980802 /* GameDirector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameDirector.xib; sourceTree = "<group>"; };
+		AFCFD66F1650892E00980802 /* tile.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tile.lua; sourceTree = "<group>"; };
+		AFCFD6701650892E00980802 /* testLevel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testLevel.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF9D1298165B134900D513C4 /* QuartzCore.framework in Frameworks */,
 				AF9D1098164CAA0A00D513C4 /* UIKit.framework in Frameworks */,
 				AF9D109A164CAA0A00D513C4 /* Foundation.framework in Frameworks */,
 				AF9D109C164CAA0A00D513C4 /* CoreGraphics.framework in Frameworks */,
@@ -85,6 +244,7 @@
 		AF9D1096164CAA0A00D513C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AF9D1297165B134900D513C4 /* QuartzCore.framework */,
 				AF9D1097164CAA0A00D513C4 /* UIKit.framework */,
 				AF9D1099164CAA0A00D513C4 /* Foundation.framework */,
 				AF9D109B164CAA0A00D513C4 /* CoreGraphics.framework */,
@@ -97,14 +257,7 @@
 		AF9D10A1164CAA0A00D513C4 /* AdvanceWars */ = {
 			isa = PBXGroup;
 			children = (
-				AF9D10AA164CAA0A00D513C4 /* AppDelegate.h */,
-				AF9D10AB164CAA0A00D513C4 /* AppDelegate.m */,
-				AF9D10B3164CAA0A00D513C4 /* Shader.fsh */,
-				AF9D10B5164CAA0A00D513C4 /* Shader.vsh */,
-				AF9D10B7164CAA0A00D513C4 /* ViewController.h */,
-				AF9D10B8164CAA0A00D513C4 /* ViewController.m */,
-				AF9D10BA164CAA0A00D513C4 /* ViewController_iPhone.xib */,
-				AF9D10BD164CAA0A00D513C4 /* ViewController_iPad.xib */,
+				AF9D11CC164D3F6600D513C4 /* Classes */,
 				AF9D10A2164CAA0A00D513C4 /* Supporting Files */,
 			);
 			path = AdvanceWars;
@@ -122,6 +275,232 @@
 				AF9D10B1164CAA0A00D513C4 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF9D11CC164D3F6600D513C4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AF9D128216581BEF00D513C4 /* Categories */,
+				AF9D12661651F54000D513C4 /* Managers */,
+				AF9D125D1651F3EE00D513C4 /* Vertices.h */,
+				AFCFD6621650490100980802 /* Levels */,
+				AFCFD65716502B0E00980802 /* Components */,
+				AF9D1247164DDEAF00D513C4 /* Helper */,
+				AF9D11CD164D3F6600D513C4 /* AppDelegate.h */,
+				AF9D11CE164D3F6600D513C4 /* AppDelegate.m */,
+				AF9D123B164D419400D513C4 /* Nibs */,
+				AF9D1235164D416B00D513C4 /* Controller */,
+				AF9D1238164D416B00D513C4 /* Model */,
+				AF9D1239164D416B00D513C4 /* Views */,
+				AF9D1234164D414300D513C4 /* Scripts */,
+				AF9D11CF164D3F6600D513C4 /* Shaders */,
+				AF9D11D2164D3F6600D513C4 /* Shared */,
+				AF9D1240164D425A00D513C4 /* Constants.h */,
+				AF9D1241164D425A00D513C4 /* Constants.m */,
+				AF9D127216574DEC00D513C4 /* GraphicsRenderer.h */,
+				AF9D127316574DEC00D513C4 /* GraphicsRenderer.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		AF9D11CF164D3F6600D513C4 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				AF9D128C16583D4900D513C4 /* basic.fsh */,
+				AF9D128D16583D4900D513C4 /* basic.vsh */,
+				AF9D11D0164D3F6600D513C4 /* Shader.fsh */,
+				AF9D11D1164D3F6600D513C4 /* Shader.vsh */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		AF9D11D2164D3F6600D513C4 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AF9D11D3164D3F6600D513C4 /* lua */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		AF9D11D3164D3F6600D513C4 /* lua */ = {
+			isa = PBXGroup;
+			children = (
+				AF9D11D4164D3F6600D513C4 /* lapi.c */,
+				AF9D11D5164D3F6600D513C4 /* lapi.h */,
+				AF9D11D6164D3F6600D513C4 /* lauxlib.c */,
+				AF9D11D7164D3F6600D513C4 /* lauxlib.h */,
+				AF9D11D8164D3F6600D513C4 /* lbaselib.c */,
+				AF9D11D9164D3F6600D513C4 /* lbitlib.c */,
+				AF9D11DA164D3F6600D513C4 /* lcode.c */,
+				AF9D11DB164D3F6600D513C4 /* lcode.h */,
+				AF9D11DC164D3F6600D513C4 /* lcorolib.c */,
+				AF9D11DD164D3F6600D513C4 /* lctype.c */,
+				AF9D11DE164D3F6600D513C4 /* lctype.h */,
+				AF9D11DF164D3F6600D513C4 /* ldblib.c */,
+				AF9D11E0164D3F6600D513C4 /* ldebug.c */,
+				AF9D11E1164D3F6600D513C4 /* ldebug.h */,
+				AF9D11E2164D3F6600D513C4 /* ldo.c */,
+				AF9D11E3164D3F6600D513C4 /* ldo.h */,
+				AF9D11E4164D3F6600D513C4 /* ldump.c */,
+				AF9D11E5164D3F6600D513C4 /* lfunc.c */,
+				AF9D11E6164D3F6600D513C4 /* lfunc.h */,
+				AF9D11E7164D3F6600D513C4 /* lgc.c */,
+				AF9D11E8164D3F6600D513C4 /* lgc.h */,
+				AF9D11E9164D3F6600D513C4 /* linit.c */,
+				AF9D11EA164D3F6600D513C4 /* liolib.c */,
+				AF9D11EB164D3F6600D513C4 /* llex.c */,
+				AF9D11EC164D3F6600D513C4 /* llex.h */,
+				AF9D11ED164D3F6600D513C4 /* llimits.h */,
+				AF9D11EE164D3F6600D513C4 /* lmathlib.c */,
+				AF9D11EF164D3F6600D513C4 /* lmem.c */,
+				AF9D11F0164D3F6600D513C4 /* lmem.h */,
+				AF9D11F1164D3F6600D513C4 /* loadlib.c */,
+				AF9D11F2164D3F6600D513C4 /* lobject.c */,
+				AF9D11F3164D3F6600D513C4 /* lobject.h */,
+				AF9D11F4164D3F6600D513C4 /* lopcodes.c */,
+				AF9D11F5164D3F6600D513C4 /* lopcodes.h */,
+				AF9D11F6164D3F6600D513C4 /* loslib.c */,
+				AF9D11F7164D3F6600D513C4 /* lparser.c */,
+				AF9D11F8164D3F6600D513C4 /* lparser.h */,
+				AF9D11F9164D3F6600D513C4 /* lstate.c */,
+				AF9D11FA164D3F6600D513C4 /* lstate.h */,
+				AF9D11FB164D3F6600D513C4 /* lstring.c */,
+				AF9D11FC164D3F6600D513C4 /* lstring.h */,
+				AF9D11FD164D3F6600D513C4 /* lstrlib.c */,
+				AF9D11FE164D3F6600D513C4 /* ltable.c */,
+				AF9D11FF164D3F6600D513C4 /* ltable.h */,
+				AF9D1200164D3F6600D513C4 /* ltablib.c */,
+				AF9D1201164D3F6600D513C4 /* ltm.c */,
+				AF9D1202164D3F6600D513C4 /* ltm.h */,
+				AF9D1203164D3F6600D513C4 /* lua.h */,
+				AF9D1204164D3F6600D513C4 /* lua.hpp */,
+				AF9D1205164D3F6600D513C4 /* luaconf.h */,
+				AF9D1206164D3F6600D513C4 /* lualib.h */,
+				AF9D1207164D3F6600D513C4 /* lundump.c */,
+				AF9D1208164D3F6600D513C4 /* lundump.h */,
+				AF9D1209164D3F6600D513C4 /* lvm.c */,
+				AF9D120A164D3F6600D513C4 /* lvm.h */,
+				AF9D120B164D3F6600D513C4 /* lzio.c */,
+				AF9D120C164D3F6600D513C4 /* lzio.h */,
+			);
+			path = lua;
+			sourceTree = "<group>";
+		};
+		AF9D1234164D414300D513C4 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				AFCFD66F1650892E00980802 /* tile.lua */,
+				AFCFD6701650892E00980802 /* testLevel.lua */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		AF9D1235164D416B00D513C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AF9D1236164D416B00D513C4 /* ViewController.h */,
+				AF9D1237164D416B00D513C4 /* ViewController.m */,
+				AFCFD666165070F300980802 /* GameDirector.h */,
+				AFCFD667165070F300980802 /* GameDirector.m */,
+				AFCFD668165070F300980802 /* GameDirector.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AF9D1238164D416B00D513C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AF9D126A1651F71A00D513C4 /* Shader.h */,
+				AF9D126B1651F71A00D513C4 /* Shader.m */,
+				AF9D12781657547900D513C4 /* TextureGroup.h */,
+				AF9D12791657547900D513C4 /* TextureGroup.m */,
+				AF9D127B165808BB00D513C4 /* Tile.h */,
+				AF9D127C165808BB00D513C4 /* Tile.m */,
+				AF9D1289165830F100D513C4 /* Scene.h */,
+				AF9D128A165830F100D513C4 /* Scene.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AF9D1239164D416B00D513C4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AF9D123B164D419400D513C4 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				AF9D123C164D419400D513C4 /* ViewController_iPad.xib */,
+				AF9D123D164D419400D513C4 /* ViewController_iPhone.xib */,
+			);
+			path = Nibs;
+			sourceTree = "<group>";
+		};
+		AF9D1247164DDEAF00D513C4 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				AF9D1249164DDED100D513C4 /* ScriptRunner.h */,
+				AF9D124A164DDED100D513C4 /* ScriptRunner.m */,
+				526197521653D93000B3821F /* CMVertexAttribArrayBuffer.h */,
+				526197531653D93000B3821F /* CMVertexAttribArrayBuffer.m */,
+				526197561653DABE00B3821F /* CMEffect.h */,
+				526197571653DABE00B3821F /* CMEffect.m */,
+				AF9D128616582F8F00D513C4 /* GraphicsHelpers.h */,
+				AF9D128716582F8F00D513C4 /* GraphicsHelpers.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		AF9D12621651F45E00D513C4 /* DrawableComponets */ = {
+			isa = PBXGroup;
+			children = (
+				AF9D12631651F47300D513C4 /* TileDrawableComponent.h */,
+				AF9D12641651F47300D513C4 /* TileDrawableComponent.m */,
+			);
+			path = DrawableComponets;
+			sourceTree = "<group>";
+		};
+		AF9D12661651F54000D513C4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				AF9D12671651F55000D513C4 /* ShaderManager.h */,
+				AF9D12681651F55000D513C4 /* ShaderManager.m */,
+				AF9D12751657506000D513C4 /* TextureManager.h */,
+				AF9D12761657506000D513C4 /* TextureManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		AF9D128216581BEF00D513C4 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		AFCFD65716502B0E00980802 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AF9D12621651F45E00D513C4 /* DrawableComponets */,
+				AFCFD65916502B5600980802 /* Component.h */,
+				AFCFD65A16502B5600980802 /* Component.m */,
+				AFCFD65C1650488C00980802 /* PositionComponent.h */,
+				AFCFD65D1650488C00980802 /* PositionComponent.m */,
+				AFCFD65F1650489D00980802 /* DrawableComponent.h */,
+				AFCFD6601650489D00980802 /* DrawableComponent.m */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AFCFD6621650490100980802 /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				AFCFD6631650492300980802 /* Level.h */,
+				AFCFD6641650492300980802 /* Level.m */,
+			);
+			name = Levels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,10 +558,13 @@
 				AF9D10AE164CAA0A00D513C4 /* Default.png in Resources */,
 				AF9D10B0164CAA0A00D513C4 /* Default@2x.png in Resources */,
 				AF9D10B2164CAA0A00D513C4 /* Default-568h@2x.png in Resources */,
-				AF9D10B4164CAA0A00D513C4 /* Shader.fsh in Resources */,
-				AF9D10B6164CAA0A00D513C4 /* Shader.vsh in Resources */,
-				AF9D10BC164CAA0A00D513C4 /* ViewController_iPhone.xib in Resources */,
-				AF9D10BF164CAA0A00D513C4 /* ViewController_iPad.xib in Resources */,
+				AF9D123E164D419400D513C4 /* ViewController_iPad.xib in Resources */,
+				AF9D123F164D419400D513C4 /* ViewController_iPhone.xib in Resources */,
+				AFCFD66A165070F300980802 /* GameDirector.xib in Resources */,
+				AF9D12911658427F00D513C4 /* basic.vsh in Resources */,
+				AF9D12901658427C00D513C4 /* basic.fsh in Resources */,
+				AFCFD6711650892E00980802 /* tile.lua in Resources */,
+				AFCFD6721650892E00980802 /* testLevel.lua in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,8 +576,62 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF9D10A8164CAA0A00D513C4 /* main.m in Sources */,
-				AF9D10AC164CAA0A00D513C4 /* AppDelegate.m in Sources */,
-				AF9D10B9164CAA0A00D513C4 /* ViewController.m in Sources */,
+				AF9D120F164D3F6600D513C4 /* AppDelegate.m in Sources */,
+				AF9D1210164D3F6600D513C4 /* Shader.fsh in Sources */,
+				AF9D1211164D3F6600D513C4 /* Shader.vsh in Sources */,
+				AF9D1212164D3F6600D513C4 /* lapi.c in Sources */,
+				AF9D1213164D3F6600D513C4 /* lauxlib.c in Sources */,
+				AF9D1214164D3F6600D513C4 /* lbaselib.c in Sources */,
+				AF9D1215164D3F6600D513C4 /* lbitlib.c in Sources */,
+				AF9D1216164D3F6600D513C4 /* lcode.c in Sources */,
+				AF9D1217164D3F6600D513C4 /* lcorolib.c in Sources */,
+				AF9D1218164D3F6600D513C4 /* lctype.c in Sources */,
+				AF9D1219164D3F6600D513C4 /* ldblib.c in Sources */,
+				AF9D121A164D3F6600D513C4 /* ldebug.c in Sources */,
+				AF9D121B164D3F6600D513C4 /* ldo.c in Sources */,
+				AF9D121C164D3F6600D513C4 /* ldump.c in Sources */,
+				AF9D121D164D3F6600D513C4 /* lfunc.c in Sources */,
+				AF9D121E164D3F6600D513C4 /* lgc.c in Sources */,
+				AF9D121F164D3F6600D513C4 /* linit.c in Sources */,
+				AF9D1220164D3F6600D513C4 /* liolib.c in Sources */,
+				AF9D1221164D3F6600D513C4 /* llex.c in Sources */,
+				AF9D1222164D3F6600D513C4 /* lmathlib.c in Sources */,
+				AF9D1223164D3F6600D513C4 /* lmem.c in Sources */,
+				AF9D1224164D3F6600D513C4 /* loadlib.c in Sources */,
+				AF9D1225164D3F6600D513C4 /* lobject.c in Sources */,
+				AF9D1226164D3F6600D513C4 /* lopcodes.c in Sources */,
+				AF9D1227164D3F6600D513C4 /* loslib.c in Sources */,
+				AF9D1228164D3F6600D513C4 /* lparser.c in Sources */,
+				AF9D1229164D3F6600D513C4 /* lstate.c in Sources */,
+				AF9D122A164D3F6600D513C4 /* lstring.c in Sources */,
+				AF9D122B164D3F6600D513C4 /* lstrlib.c in Sources */,
+				AF9D122C164D3F6600D513C4 /* ltable.c in Sources */,
+				AF9D122D164D3F6600D513C4 /* ltablib.c in Sources */,
+				AF9D122E164D3F6600D513C4 /* ltm.c in Sources */,
+				AF9D122F164D3F6600D513C4 /* lundump.c in Sources */,
+				AF9D1230164D3F6600D513C4 /* lvm.c in Sources */,
+				AF9D1231164D3F6600D513C4 /* lzio.c in Sources */,
+				AF9D123A164D416B00D513C4 /* ViewController.m in Sources */,
+				AF9D1242164D425A00D513C4 /* Constants.m in Sources */,
+				AF9D124B164DDED100D513C4 /* ScriptRunner.m in Sources */,
+				AFCFD65B16502B5600980802 /* Component.m in Sources */,
+				AFCFD65E1650488C00980802 /* PositionComponent.m in Sources */,
+				AFCFD6611650489D00980802 /* DrawableComponent.m in Sources */,
+				AFCFD6651650492300980802 /* Level.m in Sources */,
+				AFCFD669165070F300980802 /* GameDirector.m in Sources */,
+				AF9D12651651F47300D513C4 /* TileDrawableComponent.m in Sources */,
+				AF9D12691651F55000D513C4 /* ShaderManager.m in Sources */,
+				AF9D126C1651F71A00D513C4 /* Shader.m in Sources */,
+				526197541653D93000B3821F /* CMVertexAttribArrayBuffer.m in Sources */,
+				526197581653DABE00B3821F /* CMEffect.m in Sources */,
+				AF9D127416574DEC00D513C4 /* GraphicsRenderer.m in Sources */,
+				AF9D12771657506000D513C4 /* TextureManager.m in Sources */,
+				AF9D127A1657547900D513C4 /* TextureGroup.m in Sources */,
+				AF9D127D165808BB00D513C4 /* Tile.m in Sources */,
+				AF9D128816582F8F00D513C4 /* GraphicsHelpers.m in Sources */,
+				AF9D128B165830F100D513C4 /* Scene.m in Sources */,
+				AF9D128E16583D4A00D513C4 /* basic.fsh in Sources */,
+				AF9D128F16583D4A00D513C4 /* basic.vsh in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,22 +644,6 @@
 				AF9D10A5164CAA0A00D513C4 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		AF9D10BA164CAA0A00D513C4 /* ViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AF9D10BB164CAA0A00D513C4 /* en */,
-			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		AF9D10BD164CAA0A00D513C4 /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AF9D10BE164CAA0A00D513C4 /* en */,
-			);
-			name = ViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -286,7 +706,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AdvanceWars/AdvanceWars-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
+				"HEADER_SEARCH_PATHS[arch=*]" = "\"${SRCROOT}\"/**";
 				INFOPLIST_FILE = "AdvanceWars/AdvanceWars-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -297,7 +720,9 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AdvanceWars/AdvanceWars-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 				INFOPLIST_FILE = "AdvanceWars/AdvanceWars-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -322,6 +747,7 @@
 				AF9D10C4164CAA0A00D513C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

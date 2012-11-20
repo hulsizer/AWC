@@ -7,6 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "CMEffect.h"
+#import "Tile.h"
+#import "CMVertexAttribArrayBuffer.h"
+#import "PositionComponent.h"
+#import "DrawableComponent.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -27,7 +32,7 @@ enum
     NUM_ATTRIBUTES
 };
 
-GLfloat gCubeVertexData[216] = 
+GLfloat gCubeVertexData[216] =
 {
     // Data layout for each line below is:
     // positionX, positionY, positionZ,     normalX, normalY, normalZ,
@@ -86,6 +91,7 @@ GLfloat gCubeVertexData[216] =
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
+@property (strong, nonatomic) Tile *tile;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -101,6 +107,28 @@ GLfloat gCubeVertexData[216] =
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    lua_State *L = luaL_newstate();
+    luaL_openlibs(L);
+    
+    lua_settop(L, 0);
+    
+    int error;
+    
+    error = luaL_loadstring(L, "print(\"Hello World\")");
+    if (0 != error) {
+        luaL_error(L, "cannot compile lua file: %s",
+                   lua_tostring(L, -1));
+        return;
+
+    }
+    
+    error = lua_pcall(L, 0, 0, 0);
+    if (0 != error) {
+        luaL_error(L, "cannot run lua file: %s",
+                   lua_tostring(L, -1));
+        return;
+    }
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 
@@ -148,7 +176,9 @@ GLfloat gCubeVertexData[216] =
     
     [self loadShaders];
     
-    self.effect = [[GLKBaseEffect alloc] init];
+    self.tile = [[Tile alloc] initWithPoint:CGPointMake(0, 0)];
+    
+    /*self.effect = [[GLKBaseEffect alloc] init];
     self.effect.light0.enabled = GL_TRUE;
     self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
     
@@ -164,7 +194,7 @@ GLfloat gCubeVertexData[216] =
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
     glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));*/
     
     glBindVertexArrayOES(0);
 }
@@ -194,7 +224,7 @@ GLfloat gCubeVertexData[216] =
     self.effect.transform.projectionMatrix = projectionMatrix;
     
     GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -4.0f);
-    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
+    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
     
     // Compute the model view matrix for the object rendered with GLKit
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -1.5f);
@@ -219,8 +249,9 @@ GLfloat gCubeVertexData[216] =
 {
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    glBindVertexArrayOES(_vertexArray);
+   
+    [self.tile.drawingComponent draw:GLKMatrix4Make(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)];
+    /*glBindVertexArrayOES(_vertexArray);
     
     // Render the object with GLKit
     [self.effect prepareToDraw];
@@ -233,7 +264,7 @@ GLfloat gCubeVertexData[216] =
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
     glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
     
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glDrawArrays(GL_TRIANGLES, 0, 36);*/
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation
