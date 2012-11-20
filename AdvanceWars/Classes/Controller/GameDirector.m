@@ -86,8 +86,8 @@
     
     self.scroll = [[UIScrollView alloc] init];
     self.scroll.frame = self.view.bounds;
-    [self.scrollSubView setAutoresizingMask:(UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin)];
-    self.scroll.contentSize = CGSizeMake(25*(CGRectGetWidth(self.view.bounds)/13),25*(CGRectGetHeight(self.view.bounds)/10));
+    [self.scroll setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
+    self.scroll.contentSize = CGSizeMake(25*(1024.0f/13),25*(768.0f/10));
     self.scroll.maximumZoomScale = 1.5;
     self.scroll.minimumZoomScale = .75;
     self.scroll.hidden = YES;
