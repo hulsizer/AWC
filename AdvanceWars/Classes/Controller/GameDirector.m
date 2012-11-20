@@ -83,6 +83,7 @@
             [self registerObject:tile.positionComponent];
         }
     }
+	
     
     self.scroll = [[UIScrollView alloc] init];
     self.scroll.frame = self.view.bounds;
