@@ -709,6 +709,7 @@
 				HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 				"HEADER_SEARCH_PATHS[arch=*]" = "\"${SRCROOT}\"/**";
 				INFOPLIST_FILE = "AdvanceWars/AdvanceWars-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -722,6 +723,7 @@
 				GCC_PREFIX_HEADER = "AdvanceWars/AdvanceWars-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 				INFOPLIST_FILE = "AdvanceWars/AdvanceWars-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

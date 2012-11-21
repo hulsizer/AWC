@@ -111,6 +111,11 @@
 
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.scroll.contentSize = CGSizeMake(25*(CGRectGetWidth(self.view.bounds)/13),25*(CGRectGetHeight(self.view.bounds)/10));
+    [self.dummy setFrame:CGRectMake(0, 0, 25*(CGRectGetWidth(self.view.bounds)/13), 25*(CGRectGetHeight(self.view.bounds)/10))];
+}
 - (void)dealloc
 {
     [self tearDownGL];
@@ -203,7 +208,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //set translate
-    CGPoint translatedPoint = CGPointMake(-scrollView.contentOffset.x/78, -scrollView.contentOffset.y/76);
+    CGPoint translatedPoint = CGPointMake(-scrollView.contentOffset.x/(CGRectGetWidth(self.view.bounds)/13), -scrollView.contentOffset.y/(CGRectGetHeight(self.view.bounds)/10));
     
     self.scene.translation = translatedPoint;
     //self.scene.cameraMatrix = GLKMatrix4Translate(GLKMatrix4Identity, translatedPoint.x, translatedPoint.y, 0);
