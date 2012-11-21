@@ -245,4 +245,9 @@
     [_displayLink invalidate];
     _displayLink = nil;
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+   return YES;
+}
 @end
