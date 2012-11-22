@@ -11,7 +11,14 @@
 #import "PositionComponent.h"
 #import "Scene.h"
 #import "Tile.h"
+#import "CMVertexAttribArrayBuffer.h"
 #import <QuartzCore/QuartzCore.h>
+
+struct Vertex {
+    GLKVector3 position;
+    GLKVector4 color;
+    GLKVector2 uvs;
+};
 @interface GameDirector () <UIScrollViewDelegate>
 {
     CADisplayLink *_displayLink;
@@ -20,6 +27,8 @@
 @property (strong, nonatomic) UIScrollView *scroll;
 @property (strong, nonatomic) UIView *scrollSubView;
 @property (nonatomic, strong) UIView *dummy;
+@property (nonatomic, strong) CMVertexAttribArrayBuffer *verts;
+@property (nonatomic, strong) CMEffect *effct;
 @end
 
 @implementation GameDirector
@@ -72,19 +81,28 @@
     
     [self setupGL];
     
+    struct Vertex *bytes = malloc(sizeof(struct Vertex)*25*25);
+    
     self.scene = [[Scene alloc] initWithProjection:GLKMatrix4MakeOrtho(0, 13, 10, 0, -1, 2)];
     
     for (int i = 0; i < 25; i++)
     {
         for (int j = 0; j <25; j++)
         {
-            Tile *tile = [[Tile alloc] initWithPoint:CGPointMake(i, j)];
-            [self registerObject:tile.drawingComponent];
-            [self registerObject:tile.positionComponent];
+            //Tile *tile = [[Tile alloc] initWithPoint:CGPointMake(i, j)];
+            //[self registerObject:tile.drawingComponent];
+            //[self registerObject:tile.positionComponent];
+            struct Vertex vert;
+            vert.position = GLKVector3Make(i, j, 0);
+            vert.color = GLKVector4Make((rand()%255)/255.0, (rand()%255)/255.0, (rand()%255)/255.0, 1);
+            vert.uvs = GLKVector2Make(0, 0);
+            bytes[i*j*sizeof(struct Vertex)] = vert;
+            
         }
     }
 	
-    
+    CMVertexAttribArrayBuffer *verts = [[CMVertexAttribArrayBuffer alloc] initWithAttribStride:(sizeof(float)*2) numberOfVertices:25*25 bytes:bytes usage:GL_STATIC_DRAW];
+
     self.scroll = [[UIScrollView alloc] init];
     self.scroll.frame = self.view.bounds;
     [self.scroll setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
