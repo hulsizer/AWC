@@ -84,6 +84,7 @@ typedef enum
         self.contantColor = GLKVector4Make(1, 0, 0, 1);
         self.transform = [[GLKEffectPropertyTransform alloc] init];
         self.transform.projectionMatrix = GLKMatrix4Identity;
+        self.transform.modelviewMatrix = GLKMatrix4Identity;
     }
     
     return self;
@@ -147,137 +148,22 @@ typedef enum
     if(0 != self.program)
     {
         // Local storage for texture sampler IDs
-        const GLuint   samplerIDs[2] = {0, 1};
+        //const GLuint   samplerIDs[2] = {0, 1};
         
         // Pre-calculate the mvpMatrix
-        GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply(
-                                                                  self.transform.projectionMatrix,
-                                                                  self.transform.modelviewMatrix);
+        GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Identity;//GLKMatrix4Multiply(
+                                                                  //self.transform.projectionMatrix,
+                                                                  //self.transform.modelviewMatrix);
         
         // Standard matrices
         //glUniformMatrix4fv(_uniforms[CMModelviewMatrix], 1, 0,
         //                   self.transform.modelviewMatrix.m);
         glUniformMatrix4fv(_uniforms[CMMVPMatrix], 1, 0,
                            modelViewProjectionMatrix.m);
-        //glUniformMatrix3fv(_uniforms[CMNormalMatrix], 1, 0,
-        //                   self.transform.normalMatrix.m);
-        //glUniformMatrix4fv(_uniforms[CMTex0Matrix], 1, 0,
-        //                   self.textureMatrix2d0.m);
-        //glUniformMatrix4fv(_uniforms[CMTex1Matrix], 1, 0,
-        //                   self.textureMatrix2d1.m);
         
         glUniform4f(_uniforms[CMConstantColor], self.contantColor.x, self.contantColor.y, self.contantColor.z, self.contantColor.w);
         
-        /* // Two texture samplers
-         glUniform1iv(_uniforms[CMSamplers], 2,
-         (const GLint *)samplerIDs);
-         
-         
-         glUniform1f(_uniforms[CMConstantColorEnabled],
-         self.constantColorEnabled ? 1.0 : 0.0);
-         if (self.constantColorEnabled) {
-         glUniform4f(_uniforms[CMConstantColorEnabled], self.contantColor.x, self.contantColor.y, self.contantColor.z, self.contantColor.w);
-         }
-         // Pre-calculate the global ambient light contribution
-         // using only uniform parameters rather than send all
-         // the separate uniforms to the vertex shader
-         GLKVector4 globalAmbient = GLKVector4Multiply(
-         self.lightModelAmbientColor,
-         self.material.ambientColor);
-         if(self.light0.enabled)
-         {
-         globalAmbient = GLKVector4Add(globalAmbient,
-         GLKVector4Multiply(
-         self.light0.ambientColor,
-         self.material.ambientColor));
-         }
-         if(self.light1.enabled)
-         {
-         globalAmbient = GLKVector4Add(globalAmbient,
-         GLKVector4Multiply(
-         self.light1.ambientColor,
-         self.material.ambientColor));
-         }
-         if(self.light2.enabled)
-         {
-         globalAmbient = GLKVector4Add(globalAmbient,
-         GLKVector4Multiply(
-         self.light2.ambientColor,
-         self.material.ambientColor));
-         }
-         glUniform4fv(_uniforms[CMGlobalAmbient], 1,
-         globalAmbient.v);
-         
-         // Scale factors for texture contribution
-         glUniform1f(_uniforms[CMTex0Enabled],
-         self.texture2d0.enabled ? 1.0 : 0.0);
-         glUniform1f(_uniforms[CMTex1Enabled],
-         self.texture2d1.enabled ? 1.0 : 0.0);
-         
-         // Light0
-         // Material diffuse interaction with light is baked in
-         // so there is no reason to send material diffuse
-         // color to shaders
-         if(self.light0.enabled)
-         {
-         glUniform3fv(_uniforms[CMLight0Pos], 1,
-         self.light0EyePosition.v);
-         glUniform3fv(_uniforms[CMLight0Direction], 1,
-         _light0EyeDirection.v);
-         glUniform4fv(_uniforms[CMLight0Diffuse], 1,
-         GLKVector4Multiply(self.light0.diffuseColor,
-         self.material.diffuseColor).v);
-         glUniform1f(_uniforms[CMLight0Cutoff],
-         GLKMathDegreesToRadians(self.light0.spotCutoff));
-         glUniform1f(_uniforms[CMLight0Exponent],
-         self.light0.spotExponent);
-         }
-         else
-         {
-         glUniform4fv(_uniforms[CMLight0Diffuse], 1,
-         GLKVector4Make(0.0f, 0.0f, 0.0f, 1.0f).v);
-         }
-         
-         // Light1
-         // Material diffuse interaction with light is baked in
-         // so there is no reason to send material diffuse
-         // color to shaders
-         if(self.light1.enabled)
-         {
-         glUniform3fv(_uniforms[CMLight1Pos], 1,
-         self.light1EyePosition.v);
-         glUniform3fv(_uniforms[CMLight1Direction], 1,
-         _light1EyeDirection.v);
-         glUniform4fv(_uniforms[CMLight1Diffuse], 1,
-         GLKVector4Multiply(self.light1.diffuseColor,
-         self.material.diffuseColor).v);
-         glUniform1f(_uniforms[CMLight1Cutoff],
-         GLKMathDegreesToRadians(self.light1.spotCutoff));
-         glUniform1f(_uniforms[CMLight1Exponent],
-         self.light1.spotExponent);
-         }
-         else
-         {
-         glUniform4fv(_uniforms[CMLight1Diffuse], 1,
-         GLKVector4Make(0.0f, 0.0f, 0.0f, 1.0f).v);
-         }
-         
-         // Light2
-         // Material diffuse interaction with light is baked in
-         // so there is no reason to send material diffuse
-         // color to shaders
-         if(self.light2.enabled)
-         {
-         glUniform3fv(_uniforms[CMLight2Pos], 1,
-         self.light2EyePosition.v);
-         glUniform4fv(_uniforms[CMLight2Diffuse], 1,
-         GLKVector4Multiply(self.light2.diffuseColor,
-         self.material.diffuseColor).v);
-         }
-         else
-         {
-         glUniform4fv(_uniforms[CMLight2Diffuse], 1,
-         GLKVector4Make(0.0f, 0.0f, 0.0f, 1.0f).*/
+
     }
 }
 - (void)prepareToDraw
@@ -351,6 +237,7 @@ typedef enum
     // Bind attribute locations.
     // This needs to be done prior to linking.
     glBindAttribLocation(self.program, GLKVertexAttribPosition, "a_position");
+    //glBindAttribLocation(self.program, GLKVertexAttribColor, "a_color");
     //glBindAttribLocation(program, GLKVertexAttribNormal, "a_normal");
     
     // Link program.
