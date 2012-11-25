@@ -14,6 +14,7 @@
 #import "CMVertexAttribArrayBuffer.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CMEffect.h"
+#import "Vertices.h"
 struct Vertex {
     GLKVector3 position;
     GLKVector4 color;
@@ -94,12 +95,16 @@ struct Vertex {
     
     self.scene = [[Scene alloc] initWithProjection:GLKMatrix4MakeOrtho(0, 1, 1, 0, -1, 2)];
     
-    self.verts = malloc(sizeof(GLKVector3)*6*1*1);
-    self.colors = malloc(sizeof(GLKVector4)*6*1*1);
+    int number_of_cols = 25;
+    int number_of_rows = 25;
     
-    for (int i = 0; i < 1; i++)
+    self.verts = malloc(sizeof(GLKVector3)*6*number_of_cols*number_of_rows);
+    self.colors = malloc(sizeof(GLKVector4)*6*number_of_cols*number_of_rows);
+    
+    
+    for (int i = 0; i < number_of_cols; i++)
     {
-        for (int j = 0; j <1; j++)
+        for (int j = 0; j <number_of_rows; j++)
         {
             GLKVector3 one = GLKVector3Make(i, j, 0);
             GLKVector3 two = GLKVector3Make(i+1, j, 0);
@@ -108,25 +113,26 @@ struct Vertex {
             GLKVector3 five = GLKVector3Make(i, j+1, 0);
             GLKVector3 six = GLKVector3Make(i, j, 0);
             
-            _verts[(i+j)] = one;
-            _verts[(i+j)+1] = two;
-            _verts[(i+j)+2] = three;
-            _verts[(i+j)+3] = four;
-            _verts[(i+j)+4] = five;
-            _verts[(i+j)+5] = six;
+            _verts[((i*((number_of_cols*6)))+(j*6))] = one;
+            _verts[((i*((number_of_cols*6)))+(j*6))+1] = two;
+            _verts[((i*((number_of_cols*6)))+(j*6))+2] = three;
+            _verts[((i*((number_of_cols*6)))+(j*6))+3] = four;
+            _verts[((i*((number_of_cols*6)))+(j*6))+4] = five;
+            _verts[((i*((number_of_cols*6)))+(j*6))+5] = six;
 
             GLKVector4 color = GLKVector4Make((rand()%255)/255.0, (rand()%255)/255.0, (rand()%255)/255.0, 1);
             
-            _colors[(i+j)+0] = color;
-            _colors[(i+j)+1] = color;
-            _colors[(i+j)+2] = color;
-            _colors[(i+j)+3] = color;
-            _colors[(i+j)+4] = color;
-            _colors[(i+j)+5] = color;
+            _colors[((i*((number_of_cols*6)))+(j*6))] = color;
+            _colors[((i*((number_of_cols*6)))+(j*6))+1] = color;
+            _colors[((i*((number_of_cols*6)))+(j*6))+2] = color;
+            _colors[((i*((number_of_cols*6)))+(j*6))+3] = color;
+            _colors[((i*((number_of_cols*6)))+(j*6))+4] = color;
+            _colors[((i*((number_of_cols*6)))+(j*6))+5] = color;
 
         }
     }
     
+    /*
     glGenVertexArraysOES(1, &_vao);
     glBindVertexArrayOES(_vao);
     
@@ -134,14 +140,14 @@ struct Vertex {
     glBindBuffer(GL_ARRAY_BUFFER, _vbo1);
     glBufferData(GL_ARRAY_BUFFER, sizeof(GLKVector3), _verts, GL_STATIC_DRAW);
     
-    glBindVertexArrayOES(_vao);
+    //glBindVertexArrayOES(_vao);
     
     glBindBuffer(GL_ARRAY_BUFFER, _vbo1);
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLKVector3), _verts);
     //glEnableVertexAttribArray(GLKVertexAttribColor);
     //glVertexAttribPointer(GLKVertexAttribColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(GLKVector4), _colors);
-    
+    */
     
     // Bind back to the default state.
     glBindVertexArrayOES(0);
@@ -224,18 +230,35 @@ struct Vertex {
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    glBindVertexArrayOES(_vao);
+    GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
+    self.effect.transform.projectionMatrix = GLKMatrix4MakeOrtho(0, 13,10, 0, -1, 1);
+    self.effect.transform.modelviewMatrix = [self.scene getCamera];
+    [self.effect bindProgram];
+    [self.effect bindUniforms];
+    
+    glEnableVertexAttribArray(GLKVertexAttribPosition);
+    glVertexAttribPointer(GLKVertexAttribPosition, 3,
+                          GL_FLOAT, GL_FALSE, 0, _verts);
+    
+    glEnableVertexAttribArray(GLKVertexAttribColor);
+    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, 0, _colors);
+    
+    glDrawArrays(GL_TRIANGLES, 0, 6*25*25);
+    
+    glDisableVertexAttribArray(GLKVertexAttribPosition);
+
+/*    glBindVertexArrayOES(_vao);
     //[self.scene draw];
     [self.effect bindProgram];
     [self.effect bindUniforms];
     
-    //for (int i = 0; i < 6; i++) {
-    //    [self print:_verts[i]];
-    //}
+    for (int i = 0; i < 6; i++) {
+        [self print:_verts[i]];
+    }
     
     glDrawArrays(GL_TRIANGLES, 0, 6);
     
-    glBindVertexArrayOES(0);
+    glBindVertexArrayOES(0);*/
 }
 
 - (void)display

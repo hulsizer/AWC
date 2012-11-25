@@ -7,7 +7,7 @@
 // VERTEX ATTRIBUTES
 /////////////////////////////////////////////////////////////////
 attribute vec4 a_position;
-//attribute vec4 a_color;
+attribute vec4 a_color;
 //attribute vec3 a_normal;
 attribute vec2 a_texCoord0;
 attribute vec2 a_texCoord1;
@@ -20,7 +20,10 @@ attribute vec2 a_texCoord1;
 
 uniform mat4 u_mvpMatrix;
 
+varying lowp vec4 v_color;
+
 void main()
 {
+    v_color = a_color;
 	gl_Position = u_mvpMatrix * a_position;
 }

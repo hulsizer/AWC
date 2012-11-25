@@ -20,6 +20,7 @@
 @property (nonatomic, assign)CGPoint translation;
 @property (nonatomic, assign)CGFloat scale;
 
+- (GLKMatrix4)getCamera;
 - (void)registerObject:(DrawableComponent*)object;
 - (void)deregisterObject:(DrawableComponent*)object;
 - (void)draw;

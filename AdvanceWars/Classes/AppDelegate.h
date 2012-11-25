@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class GameDirector;
+@class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

@@ -44,6 +44,14 @@
     //remove object from rendering tree
 }
 
+- (GLKMatrix4)getCamera
+{
+    GLKMatrix4 camera = GLKMatrix4Identity;
+    camera = GLKMatrix4Translate(camera, self.translation.x, self.translation.y, 0);
+    camera = GLKMatrix4Scale(camera, self.scale, self.scale, 0);
+    
+    return camera;
+}
 - (void)draw
 {
     GLKMatrix4 camera = GLKMatrix4Identity;

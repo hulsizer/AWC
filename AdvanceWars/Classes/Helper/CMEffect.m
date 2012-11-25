@@ -151,9 +151,9 @@ typedef enum
         //const GLuint   samplerIDs[2] = {0, 1};
         
         // Pre-calculate the mvpMatrix
-        GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Identity;//GLKMatrix4Multiply(
-                                                                  //self.transform.projectionMatrix,
-                                                                  //self.transform.modelviewMatrix);
+        GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply(
+                                                                  self.transform.projectionMatrix,
+                                                                  self.transform.modelviewMatrix);
         
         // Standard matrices
         //glUniformMatrix4fv(_uniforms[CMModelviewMatrix], 1, 0,
@@ -237,7 +237,7 @@ typedef enum
     // Bind attribute locations.
     // This needs to be done prior to linking.
     glBindAttribLocation(self.program, GLKVertexAttribPosition, "a_position");
-    //glBindAttribLocation(self.program, GLKVertexAttribColor, "a_color");
+    glBindAttribLocation(self.program, GLKVertexAttribColor, "a_color");
     //glBindAttribLocation(program, GLKVertexAttribNormal, "a_normal");
     
     // Link program.

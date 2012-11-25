@@ -12,6 +12,7 @@
 #import "CMVertexAttribArrayBuffer.h"
 #import "PositionComponent.h"
 #import "DrawableComponent.h"
+#import "Vertices.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -174,9 +175,9 @@ GLfloat gCubeVertexData[216] =
 {
     [EAGLContext setCurrentContext:self.context];
     
-    [self loadShaders];
+    //[self loadShaders];
     
-    self.tile = [[Tile alloc] initWithPoint:CGPointMake(0, 0)];
+    //self.tile = [[Tile alloc] initWithPoint:CGPointMake(0, 0)];
     
     /*self.effect = [[GLKBaseEffect alloc] init];
     self.effect.light0.enabled = GL_TRUE;
@@ -247,14 +248,36 @@ GLfloat gCubeVertexData[216] =
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
+    //glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
+    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   
+    //[self.tile.drawingComponent draw:GLKMatrix4Make(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)];
+    
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-   
-    [self.tile.drawingComponent draw:GLKMatrix4Make(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)];
+    
+    [self.effect prepareToDraw];
+    //GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
+    self.effect.transform.projectionMatrix = GLKMatrix4MakeOrtho(0, 1, 0, 2, -1, 1);
+    
+    [self.effect prepareToDraw];
+    
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    
+    glEnableVertexAttribArray(GLKVertexAttribPosition);
+    glVertexAttribPointer(GLKVertexAttribPosition, 3,
+                          GL_FLOAT, GL_FALSE, 0, glSquareVerts);
+    
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    
+    glDisableVertexAttribArray(GLKVertexAttribPosition);
+
+    
     /*glBindVertexArrayOES(_vertexArray);
     
     // Render the object with GLKit
-    [self.effect prepareToDraw];
+    
     
     glDrawArrays(GL_TRIANGLES, 0, 36);
     
