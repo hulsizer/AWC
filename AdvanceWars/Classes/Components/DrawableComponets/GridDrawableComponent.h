@@ -10,5 +10,5 @@
 @class Shader;
 
 @interface GridDrawableComponent : DrawableComponent
-- (id)initWithGridHeight:(GLuint)height gridWidth:(GLuint)width;
+- (id)initWithGridColumns:(GLuint)columns gridRows:(GLuint)rows;
 @end

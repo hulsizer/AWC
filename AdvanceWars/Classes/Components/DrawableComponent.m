@@ -24,9 +24,6 @@
     self = [super init];
     if (self) {
         _effect = [[CMEffect alloc] init];
-        _effect.contantColor = GLKVector4Make((rand()%255)/255.0, (rand()%255)/255.0, (rand()%255)/255.0, 1);
-        _numberOfVerts = 6;
-        _verts = [[CMVertexAttribArrayBuffer alloc] initWithAttribStride:(sizeof(float)*2) numberOfVertices:_numberOfVerts bytes:glSquareVerts usage:GL_STATIC_DRAW];
         type = e_GRAPHICS;
     }
     return self;

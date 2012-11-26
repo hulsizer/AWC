@@ -54,9 +54,7 @@
 }
 - (void)draw
 {
-    GLKMatrix4 camera = GLKMatrix4Identity;
-    camera = GLKMatrix4Translate(camera, self.translation.x, self.translation.y, 0);
-    camera = GLKMatrix4Scale(camera, self.scale, self.scale, 0);
+    GLKMatrix4 camera = [self getCamera];
     //draw tree
     for (DrawableComponent *object in self.objects) {
         [object draw:camera];

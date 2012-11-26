@@ -15,6 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CMEffect.h"
 #import "Vertices.h"
+#import "GridDrawableComponent.h"
 struct Vertex {
     GLKVector3 position;
     GLKVector4 color;
@@ -93,70 +94,10 @@ struct Vertex {
     
     [self setupGL];
     
-    self.scene = [[Scene alloc] initWithProjection:GLKMatrix4MakeOrtho(0, 1, 1, 0, -1, 2)];
+    self.scene = [[Scene alloc] initWithProjection:GLKMatrix4MakeOrtho(0, 13, 10, 0, -1, 2)];
     
-    int number_of_cols = 25;
-    int number_of_rows = 25;
-    
-    self.verts = malloc(sizeof(GLKVector3)*6*number_of_cols*number_of_rows);
-    self.colors = malloc(sizeof(GLKVector4)*6*number_of_cols*number_of_rows);
-    
-    
-    for (int i = 0; i < number_of_cols; i++)
-    {
-        for (int j = 0; j <number_of_rows; j++)
-        {
-            GLKVector3 one = GLKVector3Make(i, j, 0);
-            GLKVector3 two = GLKVector3Make(i+1, j, 0);
-            GLKVector3 three = GLKVector3Make(i+1, j+1, 0);
-            GLKVector3 four = GLKVector3Make(i+1, j+1, 0);
-            GLKVector3 five = GLKVector3Make(i, j+1, 0);
-            GLKVector3 six = GLKVector3Make(i, j, 0);
-            
-            _verts[((i*((number_of_cols*6)))+(j*6))] = one;
-            _verts[((i*((number_of_cols*6)))+(j*6))+1] = two;
-            _verts[((i*((number_of_cols*6)))+(j*6))+2] = three;
-            _verts[((i*((number_of_cols*6)))+(j*6))+3] = four;
-            _verts[((i*((number_of_cols*6)))+(j*6))+4] = five;
-            _verts[((i*((number_of_cols*6)))+(j*6))+5] = six;
-
-            GLKVector4 color = GLKVector4Make((rand()%255)/255.0, (rand()%255)/255.0, (rand()%255)/255.0, 1);
-            
-            _colors[((i*((number_of_cols*6)))+(j*6))] = color;
-            _colors[((i*((number_of_cols*6)))+(j*6))+1] = color;
-            _colors[((i*((number_of_cols*6)))+(j*6))+2] = color;
-            _colors[((i*((number_of_cols*6)))+(j*6))+3] = color;
-            _colors[((i*((number_of_cols*6)))+(j*6))+4] = color;
-            _colors[((i*((number_of_cols*6)))+(j*6))+5] = color;
-
-        }
-    }
-    
-    glGenVertexArraysOES(1, &_vao);
-    glBindVertexArrayOES(_vao);
-    
-    glGenBuffers(1, &_vbo1);
-    glBindBuffer(GL_ARRAY_BUFFER, _vbo1);
-    
-    NSMutableData * data = [[NSMutableData alloc] initWithBytes:_verts length:sizeof(GLKVector3)*6*number_of_cols*number_of_rows];
-    NSMutableData * color_data = [[NSMutableData alloc] initWithBytes:_colors length:sizeof(GLKVector4)*6*number_of_cols*number_of_rows];
-    
-    glBufferData(GL_ARRAY_BUFFER, [data length], [data bytes], GL_STATIC_DRAW);
-    
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLKVector3), 0);
-    
-    glGenBuffers(1, &_vbo2);
-    glBindBuffer(GL_ARRAY_BUFFER, _vbo2);
-    glBufferData(GL_ARRAY_BUFFER, [color_data length], [color_data bytes], GL_STATIC_DRAW);
-    
-    glEnableVertexAttribArray(GLKVertexAttribColor);
-    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(GLKVector4), 0);
-    
-    glBindVertexArrayOES(0);
-    
-      self.effect = [[CMEffect alloc] init];
-    self.effect.transform.projectionMatrix = GLKMatrix4MakeOrtho(0, 13, 10, 0, -1, 2);
+    GridDrawableComponent *grid = [[GridDrawableComponent alloc] initWithGridColumns:25 gridRows:25];
+    [self.scene registerObject:grid];
     
     self.scroll = [[UIScrollView alloc] init];
     self.scroll.frame = self.view.bounds;
@@ -177,7 +118,6 @@ struct Vertex {
    
     self.scrollSubView = [[UIView alloc] initWithFrame:self.view.bounds];
     [self.scrollSubView setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
-    //[self.scrollSubView setBackgroundColor:[UIColor redColor]];
     [self.scrollSubView addGestureRecognizer:self.scroll.panGestureRecognizer];
     [self.scrollSubView addGestureRecognizer:self.scroll.pinchGestureRecognizer];
     [self.view addSubview:self.scrollSubView];
@@ -231,16 +171,7 @@ struct Vertex {
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    self.effect.transform.projectionMatrix = GLKMatrix4MakeOrtho(0, 13,10, 0, -1, 1);
-    self.effect.transform.modelviewMatrix = [self.scene getCamera];
-    [self.effect bindProgram];
-    [self.effect bindUniforms];
-        
-    glBindVertexArrayOES(_vao);
-        
-    glDrawArrays(GL_TRIANGLES, 0, 6*25*25);
-    
-    glBindVertexArrayOES(0);
+    [self.scene draw];
 }
 
 - (void)display
@@ -279,7 +210,6 @@ struct Vertex {
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
     self.scene.scale = scrollView.zoomScale;
-    //self.scene.cameraScaleMatrix = GLKMatrix4Scale(GLKMatrix4Identity, scrollView.zoomScale, scrollView.zoomScale, 0);
 }
 
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
@@ -293,7 +223,6 @@ struct Vertex {
     CGPoint translatedPoint = CGPointMake(-scrollView.contentOffset.x/(CGRectGetWidth(self.view.bounds)/13), -scrollView.contentOffset.y/(CGRectGetHeight(self.view.bounds)/10));
     
     self.scene.translation = translatedPoint;
-    //self.scene.cameraMatrix = GLKMatrix4Translate(GLKMatrix4Identity, translatedPoint.x, translatedPoint.y, 0);
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
