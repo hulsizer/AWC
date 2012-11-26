@@ -63,6 +63,14 @@
             _colors[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+3] = color;
             _colors[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+4] = color;
             _colors[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+5] = color;
+            
+            
+            _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))] = GLKVector2Make(0,0);
+            _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+1] = GLKVector2Make(1,0);;
+            _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+2] = GLKVector2Make(1,1);;
+            _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+3] = GLKVector2Make(1,1);;
+            _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+4] = GLKVector2Make(0,1);;
+            _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+5] = GLKVector2Make(0,0);;
         }
     }
 
@@ -75,6 +83,7 @@
     
     NSMutableData * data = [[NSMutableData alloc] initWithBytes:_verts length:sizeof(GLKVector3)*6*self.columns*self.rows];
     NSMutableData * color_data = [[NSMutableData alloc] initWithBytes:_colors length:sizeof(GLKVector4)*6*self.columns*self.rows];
+    NSMutableData * uv_data = [[NSMutableData alloc] initWithBytes:_uvs length:sizeof(GLKVector2)*6*self.columns*self.rows];
     
     glBufferData(GL_ARRAY_BUFFER, [data length], [data bytes], GL_STATIC_DRAW);
     
@@ -88,6 +97,14 @@
     
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(GLKVector4), 0);
+    
+    //Will be UVS eventually
+    glGenBuffers(1, &_vboUVS);
+    glBindBuffer(GL_ARRAY_BUFFER, _vboUVS);
+    glBufferData(GL_ARRAY_BUFFER, [uv_data length], [uv_data bytes], GL_STATIC_DRAW);
+    
+    glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(GLKVector2), 0);
     
     glBindVertexArrayOES(0);
 
@@ -109,12 +126,14 @@
 {
     
     GLKMatrix4 modelViewMatrix = currentMatrix;
-    //modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, self.position.point.x, self.position.point.y, 0);
+    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, self.position.point.x, self.position.point.y, 0);
     
     //assign the new model view matrix
     self.effect.transform.modelviewMatrix = modelViewMatrix;
     [self.effect bindProgram];
+    [self.effect bindTextures];
     [self.effect bindUniforms];
+    
 
     
     glBindVertexArrayOES(_vao);

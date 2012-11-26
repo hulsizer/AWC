@@ -29,7 +29,6 @@ struct Vertex {
 @property (strong, nonatomic) UIScrollView *scroll;
 @property (strong, nonatomic) UIView *scrollSubView;
 @property (nonatomic, strong) UIView *dummy;
-//@property (nonatomic, strong) CMVertexAttribArrayBuffer *verts;
 @property (nonatomic, strong) CMEffect *effct;
 @property (nonatomic, assign) GLuint vao;
 @property (nonatomic, assign) GLuint vbo1;
@@ -94,9 +93,13 @@ struct Vertex {
     
     [self setupGL];
     
-    self.scene = [[Scene alloc] initWithProjection:GLKMatrix4MakeOrtho(0, 13, 10, 0, -1, 2)];
+    self.scene = [[Scene alloc] initWithProjection:GLKMatrix4MakeOrtho(0, 13, 10, 0, -1, 2) size:CGSizeMake(26, 26)];
     
-    GridDrawableComponent *grid = [[GridDrawableComponent alloc] initWithGridColumns:25 gridRows:25];
+    GridDrawableComponent *grid = [[GridDrawableComponent alloc] initWithGridColumns:24 gridRows:24];
+    
+    PositionComponent *position = [[PositionComponent alloc] init];
+    position.point = CGPointMake(1, 1);
+    grid.position = position;
     [self.scene registerObject:grid];
     
     self.scroll = [[UIScrollView alloc] init];
@@ -111,8 +114,7 @@ struct Vertex {
     self.scroll.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.scroll];
     
-	CGSize temp = CGSizeMake(25*(1024.0f/13),25*(768.0f/10));
-    self.dummy = [[UIView alloc] initWithFrame:CGRectMake(0, 0, temp.width, temp.height)];
+    self.dummy = [[UIView alloc] init];
     [self.scrollSubView setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
     [self.scroll addSubview:self.dummy];
    
@@ -126,8 +128,9 @@ struct Vertex {
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.scroll.contentSize = CGSizeMake(25*(CGRectGetWidth(self.view.bounds)/13),25*(CGRectGetHeight(self.view.bounds)/10));
-    [self.dummy setFrame:CGRectMake(0, 0, 25*(CGRectGetWidth(self.view.bounds)/13), 25*(CGRectGetHeight(self.view.bounds)/10))];
+    CGSize sceneSize = [self.scene getSize];
+    self.scroll.contentSize = CGSizeMake(sceneSize.width*(CGRectGetWidth(self.view.bounds)/13),sceneSize.height*(CGRectGetHeight(self.view.bounds)/10));
+    [self.dummy setFrame:CGRectMake(0, 0, sceneSize.width*(CGRectGetWidth(self.view.bounds)/13), sceneSize.height*(CGRectGetHeight(self.view.bounds)/10))];
 }
 - (void)dealloc
 {
@@ -170,6 +173,10 @@ struct Vertex {
 {
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_SRC_COLOR);
     
     [self.scene draw];
 }

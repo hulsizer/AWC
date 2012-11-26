@@ -9,9 +9,15 @@
 #import "Scene.h"
 #import "CMEffect.h"
 
+@interface Scene()
+
+@property (nonatomic, assign) CGSize size;
+
+@end
+
 @implementation Scene
 
-- (id)initWithProjection:(GLKMatrix4)projectionMatrix
+- (id)initWithProjection:(GLKMatrix4)projectionMatrix size:(CGSize)size
 {
     self = [super init];
     if (self) {
@@ -22,6 +28,8 @@
         self.translation = CGPointMake(0, 0);
         self.scale = 1;
         self.objects = [[NSMutableArray alloc] init];
+        
+        self.size = size;
     }
     return self;
 }
@@ -42,6 +50,11 @@
 - (void)deregisterObject:(DrawableComponent*)object
 {
     //remove object from rendering tree
+}
+
+- (CGSize)getSize
+{
+    return self.size;
 }
 
 - (GLKMatrix4)getCamera

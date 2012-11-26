@@ -10,7 +10,7 @@
 #import "DrawableComponent.h"
 @interface Scene : NSObject
 
-- (id)initWithProjection:(GLKMatrix4)projectionMatrix;
+- (id)initWithProjection:(GLKMatrix4)projectionMatrix size:(CGSize)size;
 
 @property (nonatomic, strong)NSMutableArray *objects;
 @property (nonatomic, strong)NSMutableArray *lights;
@@ -21,6 +21,7 @@
 @property (nonatomic, assign)CGFloat scale;
 
 - (GLKMatrix4)getCamera;
+- (CGSize)getSize;
 - (void)registerObject:(DrawableComponent*)object;
 - (void)deregisterObject:(DrawableComponent*)object;
 - (void)draw;

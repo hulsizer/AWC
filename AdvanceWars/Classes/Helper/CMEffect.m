@@ -52,7 +52,6 @@ typedef enum
 @property (nonatomic, assign) GLKVector3 light1EyePosition;
 @property (nonatomic, assign) GLKVector3 light1EyeDirection;
 @property (nonatomic, assign) GLKVector3 light2EyePosition;
-
 @property (nonatomic, assign) GLuint constantColorEnabled;
 @end
 @implementation CMEffect
@@ -73,7 +72,7 @@ typedef enum
     {
         _textureMatrix2d0 = GLKMatrix4Identity;
         _textureMatrix2d1 = GLKMatrix4Identity;
-        self.texture2d0.enabled = GL_FALSE;
+        self.texture2d0.enabled = GL_TRUE;
         self.texture2d1.enabled = GL_FALSE;
         self.material.ambientColor = GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
         self.lightModelAmbientColor = GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
@@ -109,6 +108,42 @@ typedef enum
 	return self;
 }
 
+- (void)loadTexture
+{
+    _texture2d0 = [[GLKEffectPropertyTexture alloc] init];
+    
+    GLuint text_id;
+    glGenBuffers(1, &text_id);
+    glBindTexture(GL_TEXTURE_2D, text_id);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"testTexture" ofType:@"png"];
+    NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
+    UIImage *image = [[UIImage alloc] initWithData:texData];
+    if (image == nil)
+        NSLog(@"Do real error checking here");
+    
+    GLuint width = CGImageGetWidth(image.CGImage);
+    GLuint height = CGImageGetHeight(image.CGImage);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    void *imageData = malloc( height * width * 4 );
+    CGContextRef context = CGBitmapContextCreate( imageData, width, height, 8, 4 * width, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big );
+    CGColorSpaceRelease( colorSpace );
+    CGContextClearRect( context, CGRectMake( 0, 0, width, height ) );
+    CGContextTranslateCTM( context, 0, height - height );
+    CGContextDrawImage( context, CGRectMake( 0, 0, width, height ), image.CGImage );
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
+    
+    CGContextRelease(context);
+    
+    free(imageData);
+    
+    _texture2d0.name = text_id;
+    _texture2d0.enabled = GL_TRUE;
+}
+
 - (void)bindProgram
 {
     if(0 == self.program)
@@ -122,21 +157,12 @@ typedef enum
 }
 - (void)bindTextures
 {
+    
     // Bind all of the textures to their respective units
     glActiveTexture(GL_TEXTURE0);
     if(0 != self.texture2d0.name && self.texture2d0.enabled)
     {
         glBindTexture(GL_TEXTURE_2D, self.texture2d0.name);
-    }
-    else
-    {
-        glBindTexture(GL_TEXTURE_2D, 0);
-    }
-    
-    glActiveTexture(GL_TEXTURE1);
-    if(0 != self.texture2d1.name && self.texture2d1.enabled)
-    {
-        glBindTexture(GL_TEXTURE_2D, self.texture2d1.name);
     }
     else
     {
@@ -161,7 +187,9 @@ typedef enum
         glUniformMatrix4fv(_uniforms[CMMVPMatrix], 1, 0,
                            modelViewProjectionMatrix.m);
         
-        glUniform4f(_uniforms[CMConstantColor], self.contantColor.x, self.contantColor.y, self.contantColor.z, self.contantColor.w);
+        //glUniform4f(_uniforms[CMConstantColor], self.contantColor.x, self.contantColor.y, self.contantColor.z, self.contantColor.w);
+        
+        glUniform1i(_uniforms[CMTex0Matrix], 0);
         
 
     }
@@ -238,6 +266,7 @@ typedef enum
     // This needs to be done prior to linking.
     glBindAttribLocation(self.program, GLKVertexAttribPosition, "a_position");
     glBindAttribLocation(self.program, GLKVertexAttribColor, "a_color");
+    glBindAttribLocation(self.program, GLKVertexAttribTexCoord0, "a_texCoord0");
     //glBindAttribLocation(program, GLKVertexAttribNormal, "a_normal");
     
     // Link program.
@@ -264,9 +293,12 @@ typedef enum
     //uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(program, "modelViewProjectionMatrix");
     //uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(program, "normalMatrix");
     
-    _uniforms[CMConstantColor] = glGetUniformLocation(_program, "u_constantColor");
+    //_uniforms[CMConstantColor] = glGetUniformLocation(_program, "u_constantColor");
     _uniforms[CMMVPMatrix] = glGetUniformLocation(_program, "u_mvpMatrix");
+    _uniforms[CMTex0Matrix] = glGetUniformLocation(_program, "u_texture");
     
+    
+    [self loadTexture];
     // Release vertex and fragment shaders.
     if (vertShader) {
         glDetachShader(self.program, vertShader);
