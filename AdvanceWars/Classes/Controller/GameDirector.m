@@ -132,31 +132,32 @@ struct Vertex {
         }
     }
     
-    /*
     glGenVertexArraysOES(1, &_vao);
     glBindVertexArrayOES(_vao);
     
     glGenBuffers(1, &_vbo1);
     glBindBuffer(GL_ARRAY_BUFFER, _vbo1);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(GLKVector3), _verts, GL_STATIC_DRAW);
     
-    //glBindVertexArrayOES(_vao);
+    NSMutableData * data = [[NSMutableData alloc] initWithBytes:_verts length:sizeof(GLKVector3)*6*number_of_cols*number_of_rows];
+    NSMutableData * color_data = [[NSMutableData alloc] initWithBytes:_colors length:sizeof(GLKVector4)*6*number_of_cols*number_of_rows];
     
-    glBindBuffer(GL_ARRAY_BUFFER, _vbo1);
+    glBufferData(GL_ARRAY_BUFFER, [data length], [data bytes], GL_STATIC_DRAW);
+    
     glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLKVector3), _verts);
-    //glEnableVertexAttribArray(GLKVertexAttribColor);
-    //glVertexAttribPointer(GLKVertexAttribColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(GLKVector4), _colors);
-    */
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLKVector3), 0);
     
-    // Bind back to the default state.
+    glGenBuffers(1, &_vbo2);
+    glBindBuffer(GL_ARRAY_BUFFER, _vbo2);
+    glBufferData(GL_ARRAY_BUFFER, [color_data length], [color_data bytes], GL_STATIC_DRAW);
+    
+    glEnableVertexAttribArray(GLKVertexAttribColor);
+    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(GLKVector4), 0);
+    
     glBindVertexArrayOES(0);
     
-    self.effect = [[CMEffect alloc] init];
+      self.effect = [[CMEffect alloc] init];
     self.effect.transform.projectionMatrix = GLKMatrix4MakeOrtho(0, 13, 10, 0, -1, 2);
     
-    //CMVertexAttribArrayBuffer *verts = [[CMVertexAttribArrayBuffer alloc] initWithAttribStride:(sizeof(float)*2) numberOfVertices:25*25 bytes:bytes usage:GL_STATIC_DRAW];
-
     self.scroll = [[UIScrollView alloc] init];
     self.scroll.frame = self.view.bounds;
     [self.scroll setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
@@ -230,35 +231,16 @@ struct Vertex {
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
     self.effect.transform.projectionMatrix = GLKMatrix4MakeOrtho(0, 13,10, 0, -1, 1);
     self.effect.transform.modelviewMatrix = [self.scene getCamera];
     [self.effect bindProgram];
     [self.effect bindUniforms];
-    
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3,
-                          GL_FLOAT, GL_FALSE, 0, _verts);
-    
-    glEnableVertexAttribArray(GLKVertexAttribColor);
-    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, 0, _colors);
-    
+        
+    glBindVertexArrayOES(_vao);
+        
     glDrawArrays(GL_TRIANGLES, 0, 6*25*25);
     
-    glDisableVertexAttribArray(GLKVertexAttribPosition);
-
-/*    glBindVertexArrayOES(_vao);
-    //[self.scene draw];
-    [self.effect bindProgram];
-    [self.effect bindUniforms];
-    
-    for (int i = 0; i < 6; i++) {
-        [self print:_verts[i]];
-    }
-    
-    glDrawArrays(GL_TRIANGLES, 0, 6);
-    
-    glBindVertexArrayOES(0);*/
+    glBindVertexArrayOES(0);
 }
 
 - (void)display

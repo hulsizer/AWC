@@ -59,7 +59,7 @@
 		AF9D123F164D419400D513C4 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF9D123D164D419400D513C4 /* ViewController_iPhone.xib */; };
 		AF9D1242164D425A00D513C4 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D1241164D425A00D513C4 /* Constants.m */; };
 		AF9D124B164DDED100D513C4 /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D124A164DDED100D513C4 /* ScriptRunner.m */; };
-		AF9D12651651F47300D513C4 /* TileDrawableComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D12641651F47300D513C4 /* TileDrawableComponent.m */; };
+		AF9D12651651F47300D513C4 /* GridDrawableComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D12641651F47300D513C4 /* GridDrawableComponent.m */; };
 		AF9D12691651F55000D513C4 /* ShaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D12681651F55000D513C4 /* ShaderManager.m */; };
 		AF9D126C1651F71A00D513C4 /* Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D126B1651F71A00D513C4 /* Shader.m */; };
 		AF9D127416574DEC00D513C4 /* GraphicsRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9D127316574DEC00D513C4 /* GraphicsRenderer.m */; };
@@ -171,8 +171,8 @@
 		AF9D1249164DDED100D513C4 /* ScriptRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptRunner.h; path = Helper/ScriptRunner.h; sourceTree = "<group>"; };
 		AF9D124A164DDED100D513C4 /* ScriptRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptRunner.m; path = Helper/ScriptRunner.m; sourceTree = "<group>"; };
 		AF9D125D1651F3EE00D513C4 /* Vertices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vertices.h; sourceTree = "<group>"; };
-		AF9D12631651F47300D513C4 /* TileDrawableComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileDrawableComponent.h; sourceTree = "<group>"; };
-		AF9D12641651F47300D513C4 /* TileDrawableComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileDrawableComponent.m; sourceTree = "<group>"; };
+		AF9D12631651F47300D513C4 /* GridDrawableComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridDrawableComponent.h; sourceTree = "<group>"; };
+		AF9D12641651F47300D513C4 /* GridDrawableComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridDrawableComponent.m; sourceTree = "<group>"; };
 		AF9D12671651F55000D513C4 /* ShaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderManager.h; sourceTree = "<group>"; };
 		AF9D12681651F55000D513C4 /* ShaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaderManager.m; sourceTree = "<group>"; };
 		AF9D126A1651F71A00D513C4 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
@@ -456,8 +456,8 @@
 		AF9D12621651F45E00D513C4 /* DrawableComponets */ = {
 			isa = PBXGroup;
 			children = (
-				AF9D12631651F47300D513C4 /* TileDrawableComponent.h */,
-				AF9D12641651F47300D513C4 /* TileDrawableComponent.m */,
+				AF9D12631651F47300D513C4 /* GridDrawableComponent.h */,
+				AF9D12641651F47300D513C4 /* GridDrawableComponent.m */,
 			);
 			path = DrawableComponets;
 			sourceTree = "<group>";
@@ -619,7 +619,7 @@
 				AFCFD6611650489D00980802 /* DrawableComponent.m in Sources */,
 				AFCFD6651650492300980802 /* Level.m in Sources */,
 				AFCFD669165070F300980802 /* GameDirector.m in Sources */,
-				AF9D12651651F47300D513C4 /* TileDrawableComponent.m in Sources */,
+				AF9D12651651F47300D513C4 /* GridDrawableComponent.m in Sources */,
 				AF9D12691651F55000D513C4 /* ShaderManager.m in Sources */,
 				AF9D126C1651F71A00D513C4 /* Shader.m in Sources */,
 				526197541653D93000B3821F /* CMVertexAttribArrayBuffer.m in Sources */,

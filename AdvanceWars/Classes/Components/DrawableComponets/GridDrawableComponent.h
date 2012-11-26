@@ -9,8 +9,6 @@
 #import "DrawableComponent.h"
 @class Shader;
 
-@interface TileDrawableComponent : DrawableComponent
-
-- (void) setUp;
-
+@interface GridDrawableComponent : DrawableComponent
+- (id)initWithGridHeight:(GLuint)height gridWidth:(GLuint)width;
 @end

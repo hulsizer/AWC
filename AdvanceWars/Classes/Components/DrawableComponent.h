@@ -14,6 +14,7 @@
 @interface DrawableComponent : Component
 
 @property (nonatomic, strong) CMEffect *effect;
+@property (nonatomic, strong) NSString *texture;
 @property (nonatomic, strong) PositionComponent *position;
 
 - (void)draw:(GLKMatrix4) currentMatrix;
