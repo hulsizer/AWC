@@ -12,7 +12,7 @@
 #import "Shader.h"
 #import "CMEffect.h"
 #import <GLKit/GLKit.h>
-
+#import "SmartVBO.h"
 
 #define VERTS_PER_SQUARE 6
 
@@ -24,9 +24,10 @@
 @property (nonatomic, assign) GLKVector2 *uvs;
 @property (nonatomic, assign) GLKVector4 *colors;
 @property (nonatomic, assign) GLuint vao;
-@property (nonatomic, assign) GLuint vboVerts;
-@property (nonatomic, assign) GLuint vboUVS;
-@property (nonatomic, assign) GLuint vboColors;
+@property (nonatomic, strong) SmartVBO * vboVerts;
+@property (nonatomic, strong) SmartVBO * vboUVS;
+@property (nonatomic, strong) SmartVBO * vboColors;
+
 - (void)createGrid;
 @end
 @implementation GridDrawableComponent
@@ -73,35 +74,31 @@
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+5] = GLKVector2Make(0,0);;
         }
     }
+    
+    NSMutableData * data = [[NSMutableData alloc] initWithBytes:_verts length:sizeof(GLKVector3)*6*self.columns*self.rows];
+    NSMutableData * color_data = [[NSMutableData alloc] initWithBytes:_colors length:sizeof(GLKVector4)*6*self.columns*self.rows];
+    NSMutableData * uv_data = [[NSMutableData alloc] initWithBytes:_uvs length:sizeof(GLKVector2)*6*self.columns*self.rows];
 
     //Create new VAO and VBOS
     glGenVertexArraysOES(1, &_vao);
     glBindVertexArrayOES(_vao);
     
-    glGenBuffers(1, &_vboVerts);
-    glBindBuffer(GL_ARRAY_BUFFER, _vboVerts);
+    //glGenBuffers(1, &_vboVerts);
+    //glBindBuffer(GL_ARRAY_BUFFER, _vboVerts);
     
-    NSMutableData * data = [[NSMutableData alloc] initWithBytes:_verts length:sizeof(GLKVector3)*6*self.columns*self.rows];
-    NSMutableData * color_data = [[NSMutableData alloc] initWithBytes:_colors length:sizeof(GLKVector4)*6*self.columns*self.rows];
-    NSMutableData * uv_data = [[NSMutableData alloc] initWithBytes:_uvs length:sizeof(GLKVector2)*6*self.columns*self.rows];
-    
-    glBufferData(GL_ARRAY_BUFFER, [data length], [data bytes], GL_STATIC_DRAW);
+    self.vboVerts = [[SmartVBO alloc] initWithData:[data mutableBytes] andSize:[data length]];
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLKVector3), 0);
     
     //Will be UVS eventually
-    glGenBuffers(1, &_vboColors);
-    glBindBuffer(GL_ARRAY_BUFFER, _vboColors);
-    glBufferData(GL_ARRAY_BUFFER, [color_data length], [color_data bytes], GL_STATIC_DRAW);
+    self.vboColors = [[SmartVBO alloc] initWithData:[color_data mutableBytes] andSize:[color_data length]];
     
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(GLKVector4), 0);
     
     //Will be UVS eventually
-    glGenBuffers(1, &_vboUVS);
-    glBindBuffer(GL_ARRAY_BUFFER, _vboUVS);
-    glBufferData(GL_ARRAY_BUFFER, [uv_data length], [uv_data bytes], GL_STATIC_DRAW);
+    self.vboUVS = [[SmartVBO alloc] initWithData:[uv_data mutableBytes] andSize:[uv_data length]];
     
     glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(GLKVector2), 0);
@@ -124,7 +121,6 @@
 
 - (void)draw:(GLKMatrix4)currentMatrix
 {
-    
     GLKMatrix4 modelViewMatrix = currentMatrix;
     modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, self.position.point.x, self.position.point.y, 0);
     
@@ -138,7 +134,7 @@
     
     glBindVertexArrayOES(_vao);
     
-    glDrawArrays(GL_TRIANGLES, 0, 6*25*25);
+    glDrawArrays(GL_TRIANGLES, 0, VERTS_PER_SQUARE*self.columns*self.rows);
     
     glBindVertexArrayOES(0);
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		526197541653D93000B3821F /* CMVertexAttribArrayBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 526197531653D93000B3821F /* CMVertexAttribArrayBuffer.m */; };
 		526197581653DABE00B3821F /* CMEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 526197571653DABE00B3821F /* CMEffect.m */; };
+		AF8EBB89166997C000944686 /* SmartVBO.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8EBB88166997C000944686 /* SmartVBO.m */; };
 		AF9D1098164CAA0A00D513C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1097164CAA0A00D513C4 /* UIKit.framework */; };
 		AF9D109A164CAA0A00D513C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1099164CAA0A00D513C4 /* Foundation.framework */; };
 		AF9D109C164CAA0A00D513C4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D109B164CAA0A00D513C4 /* CoreGraphics.framework */; };
@@ -89,6 +90,8 @@
 		526197531653D93000B3821F /* CMVertexAttribArrayBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMVertexAttribArrayBuffer.m; path = Helper/CMVertexAttribArrayBuffer.m; sourceTree = "<group>"; };
 		526197561653DABE00B3821F /* CMEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMEffect.h; path = Helper/CMEffect.h; sourceTree = "<group>"; };
 		526197571653DABE00B3821F /* CMEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMEffect.m; path = Helper/CMEffect.m; sourceTree = "<group>"; };
+		AF8EBB87166997C000944686 /* SmartVBO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SmartVBO.h; path = Graphics/SmartVBO.h; sourceTree = "<group>"; };
+		AF8EBB88166997C000944686 /* SmartVBO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmartVBO.m; path = Graphics/SmartVBO.m; sourceTree = "<group>"; };
 		AF9D1093164CAA0A00D513C4 /* AdvanceWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdvanceWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF9D1097164CAA0A00D513C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AF9D1099164CAA0A00D513C4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -226,6 +229,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF8EBB851669979A00944686 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				AF8EBB87166997C000944686 /* SmartVBO.h */,
+				AF8EBB88166997C000944686 /* SmartVBO.m */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
 		AF9D1088164CAA0A00D513C4 = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +295,7 @@
 		AF9D11CC164D3F6600D513C4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AF8EBB851669979A00944686 /* Graphics */,
 				AF9D128216581BEF00D513C4 /* Categories */,
 				AF9D12661651F54000D513C4 /* Managers */,
 				AF9D125D1651F3EE00D513C4 /* Vertices.h */,
@@ -636,6 +649,7 @@
 				AF9D128B165830F100D513C4 /* Scene.m in Sources */,
 				AF9D128E16583D4A00D513C4 /* basic.fsh in Sources */,
 				AF9D128F16583D4A00D513C4 /* basic.vsh in Sources */,
+				AF8EBB89166997C000944686 /* SmartVBO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
