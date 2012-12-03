@@ -16,6 +16,8 @@
 #import "CMEffect.h"
 #import "Vertices.h"
 #import "GridDrawableComponent.h"
+#import "ScriptRunner.h"
+
 struct Vertex {
     GLKVector3 position;
     GLKVector4 color;
@@ -59,28 +61,6 @@ struct Vertex {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    lua_State *L = luaL_newstate();
-    luaL_openlibs(L);
-    
-    lua_settop(L, 0);
-    
-    int error;
-    
-    error = luaL_loadstring(L, "print(\"Hello World\")");
-    if (0 != error) {
-        luaL_error(L, "cannot compile lua file: %s",
-                   lua_tostring(L, -1));
-        return;
-        
-    }
-    
-    error = lua_pcall(L, 0, 0, 0);
-    if (0 != error) {
-        luaL_error(L, "cannot run lua file: %s",
-                   lua_tostring(L, -1));
-        return;
-    }
-    
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
     if (!self.context) {
@@ -93,14 +73,7 @@ struct Vertex {
     
     [self setupGL];
     
-    self.scene = [[Scene alloc] initWithProjection:GLKMatrix4MakeOrtho(0, 13, 10, 0, -1, 2) size:CGSizeMake(26, 26)];
-    
-    GridDrawableComponent *grid = [[GridDrawableComponent alloc] initWithGridColumns:24 gridRows:24];
-    
-    PositionComponent *position = [[PositionComponent alloc] init];
-    position.point = CGPointMake(1, 1);
-    grid.position = position;
-    [self.scene registerObject:grid];
+    //self.scene = [[Scene alloc] initWithProjection:GLKMatrix4MakeOrtho(0, 13, 10, 0, -1, 2) size:CGSizeMake(27, 27)];
     
     self.scroll = [[UIScrollView alloc] init];
     self.scroll.frame = self.view.bounds;
@@ -123,6 +96,8 @@ struct Vertex {
     [self.scrollSubView addGestureRecognizer:self.scroll.panGestureRecognizer];
     [self.scrollSubView addGestureRecognizer:self.scroll.pinchGestureRecognizer];
     [self.view addSubview:self.scrollSubView];
+    
+     self.scriptRunner = [[ScriptRunner alloc] initWithDirector:self andScript:@"testLevel"];
 
 }
 

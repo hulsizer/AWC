@@ -18,9 +18,11 @@ typedef enum
 @interface Component : NSObject
 {
     COMPONENT_TYPE type;
+    uint id;
 }
 
 - (void)update;
 
+@property (nonatomic, readonly) uint id;
 @property (nonatomic, readonly) COMPONENT_TYPE type;
 @end

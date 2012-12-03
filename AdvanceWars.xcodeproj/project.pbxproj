@@ -80,9 +80,8 @@
 		AFCFD6651650492300980802 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD6641650492300980802 /* Level.m */; };
 		AFCFD669165070F300980802 /* GameDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD667165070F300980802 /* GameDirector.m */; };
 		AFCFD66A165070F300980802 /* GameDirector.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFCFD668165070F300980802 /* GameDirector.xib */; };
-		AFCFD6711650892E00980802 /* tile.lua in Resources */ = {isa = PBXBuildFile; fileRef = AFCFD66F1650892E00980802 /* tile.lua */; };
-		AFCFD6721650892E00980802 /* testLevel.lua in Resources */ = {isa = PBXBuildFile; fileRef = AFCFD6701650892E00980802 /* testLevel.lua */; };
 		AFF192A11663187900D86882 /* testTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = AFF192A01663187900D86882 /* testTexture.png */; };
+		AFF19315166C10E700D86882 /* Scripts in Resources */ = {isa = PBXBuildFile; fileRef = AFF19314166C10E700D86882 /* Scripts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -207,9 +206,9 @@
 		AFCFD666165070F300980802 /* GameDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDirector.h; sourceTree = "<group>"; };
 		AFCFD667165070F300980802 /* GameDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDirector.m; sourceTree = "<group>"; };
 		AFCFD668165070F300980802 /* GameDirector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameDirector.xib; sourceTree = "<group>"; };
-		AFCFD66F1650892E00980802 /* tile.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tile.lua; sourceTree = "<group>"; };
-		AFCFD6701650892E00980802 /* testLevel.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testLevel.lua; sourceTree = "<group>"; };
 		AFF192A01663187900D86882 /* testTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testTexture.png; sourceTree = "<group>"; };
+		AFF19312166C107C00D86882 /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
+		AFF19314166C10E700D86882 /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Scripts; path = AdvanceWars/Classes/Scripts; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +240,7 @@
 		AF9D1088164CAA0A00D513C4 = {
 			isa = PBXGroup;
 			children = (
+				AFF19314166C10E700D86882 /* Scripts */,
 				AF9D10A1164CAA0A00D513C4 /* AdvanceWars */,
 				AF9D1096164CAA0A00D513C4 /* Frameworks */,
 				AF9D1094164CAA0A00D513C4 /* Products */,
@@ -308,13 +308,13 @@
 				AF9D1235164D416B00D513C4 /* Controller */,
 				AF9D1238164D416B00D513C4 /* Model */,
 				AF9D1239164D416B00D513C4 /* Views */,
-				AF9D1234164D414300D513C4 /* Scripts */,
 				AF9D11CF164D3F6600D513C4 /* Shaders */,
 				AF9D11D2164D3F6600D513C4 /* Shared */,
 				AF9D1240164D425A00D513C4 /* Constants.h */,
 				AF9D1241164D425A00D513C4 /* Constants.m */,
 				AF9D127216574DEC00D513C4 /* GraphicsRenderer.h */,
 				AF9D127316574DEC00D513C4 /* GraphicsRenderer.m */,
+				AFF19312166C107C00D86882 /* Scripts */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -400,15 +400,6 @@
 				AF9D120C164D3F6600D513C4 /* lzio.h */,
 			);
 			path = lua;
-			sourceTree = "<group>";
-		};
-		AF9D1234164D414300D513C4 /* Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				AFCFD66F1650892E00980802 /* tile.lua */,
-				AFCFD6701650892E00980802 /* testLevel.lua */,
-			);
-			path = Scripts;
 			sourceTree = "<group>";
 		};
 		AF9D1235164D416B00D513C4 /* Controller */ = {
@@ -570,6 +561,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFF19315166C10E700D86882 /* Scripts in Resources */,
 				AF9D10A6164CAA0A00D513C4 /* InfoPlist.strings in Resources */,
 				AF9D10AE164CAA0A00D513C4 /* Default.png in Resources */,
 				AF9D10B0164CAA0A00D513C4 /* Default@2x.png in Resources */,
@@ -579,8 +571,6 @@
 				AFCFD66A165070F300980802 /* GameDirector.xib in Resources */,
 				AF9D12911658427F00D513C4 /* basic.vsh in Resources */,
 				AF9D12901658427C00D513C4 /* basic.fsh in Resources */,
-				AFCFD6711650892E00980802 /* tile.lua in Resources */,
-				AFCFD6721650892E00980802 /* testLevel.lua in Resources */,
 				AFF192A11663187900D86882 /* testTexture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
