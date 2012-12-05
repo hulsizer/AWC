@@ -6,9 +6,10 @@
 //  Copyright (c) 2012 Andrew Hulsizer. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "GameObject.h"
 @class Texture;
-@interface TextureAtlas : NSObject
+@interface TextureAtlas : GameObject
+
 
 - (id)initWithTextureName:(Texture*)texture Width:(GLuint)width height:(GLuint)height;
 - (const GLvoid*)getTextureForID:(int)textureId;

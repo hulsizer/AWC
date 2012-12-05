@@ -8,6 +8,7 @@
 
 #import "TextureAtlas.h"
 #import "Texture.h"
+
 @interface TextureAtlas()
 
 @property (nonatomic, assign) GLuint tileWidth;
@@ -17,6 +18,7 @@
 @end
 
 @implementation TextureAtlas
+@synthesize gid = _gid;
 
 - (id)initWithTextureName:(Texture*)texture Width:(GLuint)width height:(GLuint)height
 {
@@ -27,6 +29,8 @@
         self.tileHeight = height;
         self.textures = [[NSMutableDictionary alloc] init];
         [self createTextureMap];
+        
+        _gid = globalObjectID++;
     }
     return self;
 }

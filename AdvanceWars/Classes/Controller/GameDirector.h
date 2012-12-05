@@ -18,6 +18,8 @@
 - (void)registerObject:(Component*)object;
 - (void)deregisterObject:(Component*)object;
 
+- (NSObject*)getObject:(int)gid;
+
 @property (nonatomic, strong) ScriptRunner *scriptRunner;
 @property (nonatomic, strong) NSMutableDictionary *components;
 @property (nonatomic, strong) Scene *scene;

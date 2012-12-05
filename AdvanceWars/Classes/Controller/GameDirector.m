@@ -17,6 +17,7 @@
 #import "Vertices.h"
 #import "GridDrawableComponent.h"
 #import "ScriptRunner.h"
+#import "GameObject.h"
 
 struct Vertex {
     GLKVector3 position;
@@ -38,6 +39,7 @@ struct Vertex {
 @property (nonatomic, strong) CMEffect *effect;
 @property (nonatomic, assign) GLKVector3 *verts;
 @property (nonatomic, assign) GLKVector4 *colors;
+@property (nonatomic, strong) NSMutableDictionary *objects;
 @end
 
 @implementation GameDirector
@@ -242,5 +244,15 @@ struct Vertex {
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
    return YES;
+}
+
+- (GameObject*)getObject:(int)gid
+{
+    return [self.objects objectForKey:[NSNumber numberWithInt:gid]];
+}
+
+- (void)addObject:(GameObject*)object
+{
+    [self.objects setObject:object forKey:[NSNumber numberWithInt:object.gid]];
 }
 @end

@@ -76,6 +76,8 @@
 		AF9D1298165B134900D513C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1297165B134900D513C4 /* QuartzCore.framework */; };
 		AFC79499166D869B00AF0B40 /* TextureAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC79498166D869B00AF0B40 /* TextureAtlas.m */; };
 		AFC794A9166DBCD200AF0B40 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC794A8166DBCD200AF0B40 /* Texture.m */; };
+		AFC794AC166EFABF00AF0B40 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC794AB166EFABE00AF0B40 /* GameObject.m */; };
+		AFC794AF166EFBB700AF0B40 /* TileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC794AE166EFBB700AF0B40 /* TileMap.m */; };
 		AFCFD65B16502B5600980802 /* Component.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD65A16502B5600980802 /* Component.m */; };
 		AFCFD65E1650488C00980802 /* PositionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD65D1650488C00980802 /* PositionComponent.m */; };
 		AFCFD6611650489D00980802 /* DrawableComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD6601650489D00980802 /* DrawableComponent.m */; };
@@ -201,6 +203,10 @@
 		AFC79498166D869B00AF0B40 /* TextureAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureAtlas.m; sourceTree = "<group>"; };
 		AFC794A7166DBCD200AF0B40 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		AFC794A8166DBCD200AF0B40 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture.m; sourceTree = "<group>"; };
+		AFC794AA166EFABE00AF0B40 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		AFC794AB166EFABE00AF0B40 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
+		AFC794AD166EFBB700AF0B40 /* TileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileMap.h; sourceTree = "<group>"; };
+		AFC794AE166EFBB700AF0B40 /* TileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileMap.m; sourceTree = "<group>"; };
 		AFCFD65916502B5600980802 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
 		AFCFD65A16502B5600980802 /* Component.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Component.m; sourceTree = "<group>"; };
 		AFCFD65C1650488C00980802 /* PositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionComponent.h; sourceTree = "<group>"; };
@@ -435,6 +441,10 @@
 				AFC79498166D869B00AF0B40 /* TextureAtlas.m */,
 				AFC794A7166DBCD200AF0B40 /* Texture.h */,
 				AFC794A8166DBCD200AF0B40 /* Texture.m */,
+				AFC794AA166EFABE00AF0B40 /* GameObject.h */,
+				AFC794AB166EFABE00AF0B40 /* GameObject.m */,
+				AFC794AD166EFBB700AF0B40 /* TileMap.h */,
+				AFC794AE166EFBB700AF0B40 /* TileMap.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -652,6 +662,8 @@
 				AF8EBB89166997C000944686 /* SmartVBO.m in Sources */,
 				AFC79499166D869B00AF0B40 /* TextureAtlas.m in Sources */,
 				AFC794A9166DBCD200AF0B40 /* Texture.m in Sources */,
+				AFC794AC166EFABF00AF0B40 /* GameObject.m in Sources */,
+				AFC794AF166EFBB700AF0B40 /* TileMap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

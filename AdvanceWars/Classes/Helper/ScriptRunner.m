@@ -11,15 +11,21 @@
 #import "GridDrawableComponent.h"
 #import "PositionComponent.h"
 #import "Scene.h"
+#import "TextureAtlas.h"
+#import "Tile.h"
+#import "TileMap.h"
 
 #define DECLARE_CALLBACK(NAME) static int NAME(lua_State *L);
 
 DECLARE_CALLBACK(createLevel)
 DECLARE_CALLBACK(createGridComponent)
 DECLARE_CALLBACK(createScene)
+DECLARE_CALLBACK(createTextureAtlas)
+DECLARE_CALLBACK(addTileToTileMap)
 
 const char *REGISTRY_KEY_DIRECTOR = "director_key";
 const char *REGISTRY_KEY_COMPONENT = "component_key";
+const char *REGISTRY_KEY_TEXTURE_ATLAS = "textureatlas_key";
 
 @interface ScriptRunner()
 @property (nonatomic, assign) lua_State *L;
@@ -45,6 +51,7 @@ const char *REGISTRY_KEY_COMPONENT = "component_key";
         
         [self createNewTable:REGISTRY_KEY_DIRECTOR];
         [self createNewTable:REGISTRY_KEY_COMPONENT];
+        [self createNewTable:REGISTRY_KEY_TEXTURE_ATLAS];
         
         lua_pushstring(_L,REGISTRY_KEY_DIRECTOR);                      //["table"]
         lua_pushlightuserdata(_L, (__bridge void *)(director));		//["table",{}]
@@ -82,6 +89,8 @@ const char *REGISTRY_KEY_COMPONENT = "component_key";
     [self registerGlobalFunction:"createLevel" withFunction:createLevel];
     [self registerGlobalFunction:"createGridComponent" withFunction:createGridComponent];
     [self registerGlobalFunction:"createScene" withFunction:createScene];
+    [self registerGlobalFunction:"createTextureAtlas" withFunction:createTextureAtlas];
+    [self registerGlobalFunction:"addTileToTileMap" withFunction:addTileToTileMap];
 }
 
 - (void)createNewTable:(const char*) tableName
@@ -138,26 +147,47 @@ int createLevel(lua_State *L)
     return 0;
 }
 
-int createGridComponent(lua_State *L)
+int addTileToTileMap(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    
+    int tileMapID = lua_tonumber(L, -2);
+    int tileID = lua_tonumber(L, -1);
+    
+    TileMap *tileMap = (TileMap*)[director getObject:tileMapID];
+    Tile *tile = (Tile*)[director getObject:tileID];
+    [tileMap addTile:tile];
+    return 0;
+
+}
+
+int createTextureAtlas(lua_State *L)
+{    
+    NSString *textureName = [NSString stringWithUTF8String:lua_tostring(L, -3)];
+    int columns = lua_tonumber(L, -2);
+    int rows = lua_tonumber(L, -1);
+    
+    TextureAtlas *textureAtlas = [[TextureAtlas alloc] initWithTextureName:nil Width:columns height:rows];
+    
+    pushObjectToTable(L, REGISTRY_KEY_TEXTURE_ATLAS, textureAtlas.gid);
+    
+	return 1;
+}
+
+int createScene(lua_State *L)
 {
     GameDirector *director = getDirector(L);
     
     int columns = lua_tonumber(L, -2);
     int rows = lua_tonumber(L, -1);
     
-    GridDrawableComponent *component = [[GridDrawableComponent alloc] initWithGridColumns:columns gridRows:rows];
+    Scene *component = [[Scene alloc] initWithProjection:GLKMatrix4MakeOrtho(0, 13, 10, 0, -1, 2) size:CGSizeMake(columns, rows)];
     
-    PositionComponent *position = [[PositionComponent alloc] init];
-    position.point = CGPointMake(1, 1);
-    component.position = position;
-    
-    [director.scene registerObject:component];
-    //pushObjectToTable(L, REGISTRY_KEY_COMPONENT, component.id);
-    
-	return 0;
+    director.scene = component;
+    return 0;
 }
 
-int createScene(lua_State *L)
+int createGridComponent(lua_State *L)
 {
     GameDirector *director = getDirector(L);
     
