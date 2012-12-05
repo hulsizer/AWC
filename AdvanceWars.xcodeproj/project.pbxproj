@@ -74,6 +74,8 @@
 		AF9D12901658427C00D513C4 /* basic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D128C16583D4900D513C4 /* basic.fsh */; };
 		AF9D12911658427F00D513C4 /* basic.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D128D16583D4900D513C4 /* basic.vsh */; };
 		AF9D1298165B134900D513C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1297165B134900D513C4 /* QuartzCore.framework */; };
+		AFC79499166D869B00AF0B40 /* TextureAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC79498166D869B00AF0B40 /* TextureAtlas.m */; };
+		AFC794A9166DBCD200AF0B40 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC794A8166DBCD200AF0B40 /* Texture.m */; };
 		AFCFD65B16502B5600980802 /* Component.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD65A16502B5600980802 /* Component.m */; };
 		AFCFD65E1650488C00980802 /* PositionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD65D1650488C00980802 /* PositionComponent.m */; };
 		AFCFD6611650489D00980802 /* DrawableComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCFD6601650489D00980802 /* DrawableComponent.m */; };
@@ -195,6 +197,10 @@
 		AF9D128C16583D4900D513C4 /* basic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.fsh; sourceTree = "<group>"; };
 		AF9D128D16583D4900D513C4 /* basic.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.vsh; sourceTree = "<group>"; };
 		AF9D1297165B134900D513C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AFC79497166D869B00AF0B40 /* TextureAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureAtlas.h; sourceTree = "<group>"; };
+		AFC79498166D869B00AF0B40 /* TextureAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureAtlas.m; sourceTree = "<group>"; };
+		AFC794A7166DBCD200AF0B40 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		AFC794A8166DBCD200AF0B40 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture.m; sourceTree = "<group>"; };
 		AFCFD65916502B5600980802 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
 		AFCFD65A16502B5600980802 /* Component.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Component.m; sourceTree = "<group>"; };
 		AFCFD65C1650488C00980802 /* PositionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionComponent.h; sourceTree = "<group>"; };
@@ -425,6 +431,10 @@
 				AF9D127C165808BB00D513C4 /* Tile.m */,
 				AF9D1289165830F100D513C4 /* Scene.h */,
 				AF9D128A165830F100D513C4 /* Scene.m */,
+				AFC79497166D869B00AF0B40 /* TextureAtlas.h */,
+				AFC79498166D869B00AF0B40 /* TextureAtlas.m */,
+				AFC794A7166DBCD200AF0B40 /* Texture.h */,
+				AFC794A8166DBCD200AF0B40 /* Texture.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -640,6 +650,8 @@
 				AF9D128E16583D4A00D513C4 /* basic.fsh in Sources */,
 				AF9D128F16583D4A00D513C4 /* basic.vsh in Sources */,
 				AF8EBB89166997C000944686 /* SmartVBO.m in Sources */,
+				AFC79499166D869B00AF0B40 /* TextureAtlas.m in Sources */,
+				AFC794A9166DBCD200AF0B40 /* Texture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
