@@ -74,6 +74,7 @@
 		AF9D12901658427C00D513C4 /* basic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D128C16583D4900D513C4 /* basic.fsh */; };
 		AF9D12911658427F00D513C4 /* basic.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D128D16583D4900D513C4 /* basic.vsh */; };
 		AF9D1298165B134900D513C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1297165B134900D513C4 /* QuartzCore.framework */; };
+		AFB3E754167C019D007612FA /* PerlinNoiseGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3E753167C019D007612FA /* PerlinNoiseGenerator.m */; };
 		AFC79499166D869B00AF0B40 /* TextureAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC79498166D869B00AF0B40 /* TextureAtlas.m */; };
 		AFC794A9166DBCD200AF0B40 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC794A8166DBCD200AF0B40 /* Texture.m */; };
 		AFC794AC166EFABF00AF0B40 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC794AB166EFABE00AF0B40 /* GameObject.m */; };
@@ -199,6 +200,8 @@
 		AF9D128C16583D4900D513C4 /* basic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.fsh; sourceTree = "<group>"; };
 		AF9D128D16583D4900D513C4 /* basic.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.vsh; sourceTree = "<group>"; };
 		AF9D1297165B134900D513C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AFB3E752167C019D007612FA /* PerlinNoiseGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PerlinNoiseGenerator.h; path = Graphics/PerlinNoiseGenerator.h; sourceTree = "<group>"; };
+		AFB3E753167C019D007612FA /* PerlinNoiseGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PerlinNoiseGenerator.m; path = Graphics/PerlinNoiseGenerator.m; sourceTree = "<group>"; };
 		AFC79497166D869B00AF0B40 /* TextureAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureAtlas.h; sourceTree = "<group>"; };
 		AFC79498166D869B00AF0B40 /* TextureAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureAtlas.m; sourceTree = "<group>"; };
 		AFC794A7166DBCD200AF0B40 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
@@ -245,6 +248,8 @@
 			children = (
 				AF8EBB87166997C000944686 /* SmartVBO.h */,
 				AF8EBB88166997C000944686 /* SmartVBO.m */,
+				AFB3E752167C019D007612FA /* PerlinNoiseGenerator.h */,
+				AFB3E753167C019D007612FA /* PerlinNoiseGenerator.m */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -664,6 +669,7 @@
 				AFC794A9166DBCD200AF0B40 /* Texture.m in Sources */,
 				AFC794AC166EFABF00AF0B40 /* GameObject.m in Sources */,
 				AFC794AF166EFBB700AF0B40 /* TileMap.m in Sources */,
+				AFB3E754167C019D007612FA /* PerlinNoiseGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

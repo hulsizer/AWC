@@ -8,6 +8,7 @@
 
 #import "CMEffect.h"
 #import "ShaderManager.h"
+#import "PerlinNoiseGenerator.h"
 
 /////////////////////////////////////////////////////////////////
 // GLSL program uniform indices.
@@ -140,7 +141,8 @@ typedef enum
     
     free(imageData);
     
-    _texture2d0.name = text_id;
+    //GLuint test = [PerlinNoiseGenerator generateMap:25 height:32];
+    _texture2d0.name = [PerlinNoiseGenerator generateMap:256 height:256];
     _texture2d0.enabled = GL_TRUE;
 }
 

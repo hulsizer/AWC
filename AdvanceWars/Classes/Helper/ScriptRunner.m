@@ -194,10 +194,16 @@ int createGridComponent(lua_State *L)
     int columns = lua_tonumber(L, -2);
     int rows = lua_tonumber(L, -1);
     
-    Scene *component = [[Scene alloc] initWithProjection:GLKMatrix4MakeOrtho(0, 13, 10, 0, -1, 2) size:CGSizeMake(columns, rows)];
+    GridDrawableComponent *component = [[GridDrawableComponent alloc] initWithGridColumns:columns gridRows:rows];
     
-    director.scene = component;
-    return 0;
+    PositionComponent *position = [[PositionComponent alloc] init];
+    position.point = CGPointMake(1, 1);
+    component.position = position;
+    
+    [director.scene registerObject:component];
+    //pushObjectToTable(L, REGISTRY_KEY_COMPONENT, component.id);
+    
+	return 0;
 }
 
 int createPhysicsComponent(lua_State *L)
