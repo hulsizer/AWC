@@ -18,6 +18,7 @@
 #import "GridDrawableComponent.h"
 #import "ScriptRunner.h"
 #import "GameObject.h"
+#import "Macros.h"
 
 struct Vertex {
     GLKVector3 position;
@@ -82,7 +83,7 @@ struct Vertex {
     [self.scroll setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
     self.scroll.contentSize = CGSizeMake(25*(1024.0f/13),25*(768.0f/10));
     self.scroll.maximumZoomScale = 1.5;
-    self.scroll.minimumZoomScale = .75;
+    self.scroll.minimumZoomScale = 1;
     self.scroll.hidden = YES;
     self.scroll.delegate = self;
     self.scroll.showsHorizontalScrollIndicator = NO;
@@ -148,12 +149,12 @@ struct Vertex {
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
+    glClearColor(Color255(145.0f), Color255(207.0f),Color255(196.0f), 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_BLEND);
-    glBlendFunc(GL_ONE, GL_SRC_COLOR);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     
     [self.scene draw];
 }

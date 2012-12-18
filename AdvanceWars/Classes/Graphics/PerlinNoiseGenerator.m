@@ -42,6 +42,7 @@ double dotProduct(double x0, double y0, double x1, double y1)
 - (id) init {
     if ((self = [super init])) {
         for (unsigned int i = 0; i < PERMUTATION_SIZE; i++) {
+			
             int test = rand() & 0xff;
             randomMap[i] = test;
         }

@@ -65,22 +65,22 @@
             _colors[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+4] = color;
             _colors[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+5] = color;
             
-            
+            /*
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))] = GLKVector2Make(one.x,one.y);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+1] = GLKVector2Make((two.x),two.y);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+2] = GLKVector2Make((three.x),(three.y));
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+3] = GLKVector2Make((four.x),(four.y));
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+4] = GLKVector2Make((five.x),(five.y));
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+5] = GLKVector2Make((six.x),(six.y));
+            */
             
-            /*
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))] = GLKVector2Make(one.x/self.rows,one.y/self.columns);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+1] = GLKVector2Make((two.x)/self.rows,two.y/self.columns);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+2] = GLKVector2Make((three.x)/self.rows,(three.y)/self.columns);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+3] = GLKVector2Make((four.x)/self.rows,(four.y)/self.columns);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+4] = GLKVector2Make((five.x)/self.rows,(five.y)/self.columns);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+5] = GLKVector2Make((six.x)/self.rows,(six.y)/self.columns);
-            */
+            
         }
     }
     

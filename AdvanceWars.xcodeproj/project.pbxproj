@@ -94,6 +94,7 @@
 		526197531653D93000B3821F /* CMVertexAttribArrayBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMVertexAttribArrayBuffer.m; path = Helper/CMVertexAttribArrayBuffer.m; sourceTree = "<group>"; };
 		526197561653DABE00B3821F /* CMEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMEffect.h; path = Helper/CMEffect.h; sourceTree = "<group>"; };
 		526197571653DABE00B3821F /* CMEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMEffect.m; path = Helper/CMEffect.m; sourceTree = "<group>"; };
+		526C6FD91680B6DC00EA460C /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		AF8EBB87166997C000944686 /* SmartVBO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SmartVBO.h; path = Graphics/SmartVBO.h; sourceTree = "<group>"; };
 		AF8EBB88166997C000944686 /* SmartVBO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmartVBO.m; path = Graphics/SmartVBO.m; sourceTree = "<group>"; };
 		AF9D1093164CAA0A00D513C4 /* AdvanceWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdvanceWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +291,7 @@
 			children = (
 				AF9D11CC164D3F6600D513C4 /* Classes */,
 				AF9D10A2164CAA0A00D513C4 /* Supporting Files */,
+				526C6FD91680B6DC00EA460C /* Macros.h */,
 			);
 			path = AdvanceWars;
 			sourceTree = "<group>";
