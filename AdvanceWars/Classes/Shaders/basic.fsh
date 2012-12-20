@@ -26,5 +26,5 @@ void main()
 	{
 		result = outlineGreen;
 	}
-    gl_FragColor =  result;
+    gl_FragColor =  texture2D(u_texture, v_texture_coord);
 }

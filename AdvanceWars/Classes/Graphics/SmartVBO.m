@@ -40,6 +40,13 @@
     return _dirty;
 }
 
+- (void)rebind
+{
+    glBindBuffer(GL_ARRAY_BUFFER, _vboID);
+    
+    glBufferData(GL_ARRAY_BUFFER, _size, _data, GL_STREAM_DRAW);
+}
+
 - (void)update
 {
     if (_dirty) {

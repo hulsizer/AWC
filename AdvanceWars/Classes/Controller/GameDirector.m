@@ -100,7 +100,7 @@ struct Vertex {
     [self.scrollSubView addGestureRecognizer:self.scroll.pinchGestureRecognizer];
     [self.view addSubview:self.scrollSubView];
     
-     self.scriptRunner = [[ScriptRunner alloc] initWithDirector:self andScript:@"testLevel"];
+     self.scriptRunner = [[ScriptRunner alloc] initWithDirector:self andScript:@"testImport"];
 
 }
 

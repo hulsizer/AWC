@@ -14,5 +14,6 @@
 - (GLboolean)dirty;
 - (void)update;
 - (void)bind;
+- (void)rebind;
 - (void)changeDataAtOffset:(GLuint)offset data:(GLvoid*) data size:(GLuint)size;
 @end

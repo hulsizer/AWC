@@ -74,6 +74,7 @@
 		AF9D12901658427C00D513C4 /* basic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D128C16583D4900D513C4 /* basic.fsh */; };
 		AF9D12911658427F00D513C4 /* basic.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D128D16583D4900D513C4 /* basic.vsh */; };
 		AF9D1298165B134900D513C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1297165B134900D513C4 /* QuartzCore.framework */; };
+		AFA86E941682D88A00910C71 /* testTextureMap.png in Resources */ = {isa = PBXBuildFile; fileRef = AFA86E931682D88A00910C71 /* testTextureMap.png */; };
 		AFB3E754167C019D007612FA /* PerlinNoiseGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3E753167C019D007612FA /* PerlinNoiseGenerator.m */; };
 		AFC79499166D869B00AF0B40 /* TextureAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC79498166D869B00AF0B40 /* TextureAtlas.m */; };
 		AFC794A9166DBCD200AF0B40 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC794A8166DBCD200AF0B40 /* Texture.m */; };
@@ -201,6 +202,7 @@
 		AF9D128C16583D4900D513C4 /* basic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.fsh; sourceTree = "<group>"; };
 		AF9D128D16583D4900D513C4 /* basic.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.vsh; sourceTree = "<group>"; };
 		AF9D1297165B134900D513C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AFA86E931682D88A00910C71 /* testTextureMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testTextureMap.png; sourceTree = "<group>"; };
 		AFB3E752167C019D007612FA /* PerlinNoiseGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PerlinNoiseGenerator.h; path = Graphics/PerlinNoiseGenerator.h; sourceTree = "<group>"; };
 		AFB3E753167C019D007612FA /* PerlinNoiseGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PerlinNoiseGenerator.m; path = Graphics/PerlinNoiseGenerator.m; sourceTree = "<group>"; };
 		AFC79497166D869B00AF0B40 /* TextureAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureAtlas.h; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 		AF9D10A2164CAA0A00D513C4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AFA86E931682D88A00910C71 /* testTextureMap.png */,
 				AFF192A01663187900D86882 /* testTexture.png */,
 				AF9D10A3164CAA0A00D513C4 /* AdvanceWars-Info.plist */,
 				AF9D10A4164CAA0A00D513C4 /* InfoPlist.strings */,
@@ -599,6 +602,7 @@
 				AF9D12911658427F00D513C4 /* basic.vsh in Resources */,
 				AF9D12901658427C00D513C4 /* basic.fsh in Resources */,
 				AFF192A11663187900D86882 /* testTexture.png in Resources */,
+				AFA86E941682D88A00910C71 /* testTextureMap.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
