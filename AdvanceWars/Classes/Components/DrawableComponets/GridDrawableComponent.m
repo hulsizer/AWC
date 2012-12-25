@@ -12,7 +12,6 @@
 #import "Shader.h"
 #import "CMEffect.h"
 #import <GLKit/GLKit.h>
-#import "SmartVBO.h"
 
 #define VERTS_PER_SQUARE 6
 
@@ -24,9 +23,6 @@
 @property (nonatomic, assign) GLKVector2 *uvs;
 @property (nonatomic, assign) GLKVector4 *colors;
 @property (nonatomic, assign) GLuint vao;
-@property (nonatomic, strong) SmartVBO * vboVerts;
-@property (nonatomic, strong) SmartVBO * vboUVS;
-@property (nonatomic, strong) SmartVBO * vboColors;
 
 - (void)createGrid;
 @end
@@ -34,7 +30,7 @@
 
 - (void)createGrid
 {
-    self.verts = malloc(sizeof(GLKVector3)*VERTS_PER_SQUARE*self.columns*self.rows);
+    /*self.verts = malloc(sizeof(GLKVector3)*VERTS_PER_SQUARE*self.columns*self.rows);
     self.uvs = malloc(sizeof(GLKVector2)*VERTS_PER_SQUARE*self.columns*self.rows);
     self.colors = malloc(sizeof(GLKVector4)*VERTS_PER_SQUARE*self.columns*self.rows);
     
@@ -65,14 +61,14 @@
             _colors[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+4] = color;
             _colors[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+5] = color;
             
-            
+            /*
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))] = GLKVector2Make(one.x,one.y);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+1] = GLKVector2Make((two.x),two.y);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+2] = GLKVector2Make((three.x),(three.y));
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+3] = GLKVector2Make((four.x),(four.y));
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+4] = GLKVector2Make((five.x),(five.y));
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+5] = GLKVector2Make((six.x),(six.y));
-            
+            */
             /*
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))] = GLKVector2Make(one.x/self.rows,one.y/self.columns);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+1] = GLKVector2Make((two.x)/self.rows,two.y/self.columns);
@@ -80,14 +76,14 @@
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+3] = GLKVector2Make((four.x)/self.rows,(four.y)/self.columns);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+4] = GLKVector2Make((five.x)/self.rows,(five.y)/self.columns);
             _uvs[((i*((self.columns*VERTS_PER_SQUARE)))+(j*VERTS_PER_SQUARE))+5] = GLKVector2Make((six.x)/self.rows,(six.y)/self.columns);
-            */
+            
         }
     }
     
     NSMutableData * data = [[NSMutableData alloc] initWithBytes:_verts length:sizeof(GLKVector3)*6*self.columns*self.rows];
     NSMutableData * color_data = [[NSMutableData alloc] initWithBytes:_colors length:sizeof(GLKVector4)*6*self.columns*self.rows];
     NSMutableData * uv_data = [[NSMutableData alloc] initWithBytes:_uvs length:sizeof(GLKVector2)*6*self.columns*self.rows];
-
+*/
     //Create new VAO and VBOS
     glGenVertexArraysOES(1, &_vao);
     glBindVertexArrayOES(_vao);
@@ -95,22 +91,22 @@
     //glGenBuffers(1, &_vboVerts);
     //glBindBuffer(GL_ARRAY_BUFFER, _vboVerts);
     
-    self.vboVerts = [[SmartVBO alloc] initWithData:[data mutableBytes] andSize:[data length]];
+    //self.vboVerts = [[SmartVBO alloc] initWithData:[data mutableBytes] andSize:[data length]];
     
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLKVector3), 0);
-    
-    //Will be UVS eventually
-    self.vboColors = [[SmartVBO alloc] initWithData:[color_data mutableBytes] andSize:[color_data length]];
-    
-    glEnableVertexAttribArray(GLKVertexAttribColor);
-    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(GLKVector4), 0);
+    //glEnableVertexAttribArray(GLKVertexAttribPosition);
+    //glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLKVector3), 0);
     
     //Will be UVS eventually
-    self.vboUVS = [[SmartVBO alloc] initWithData:[uv_data mutableBytes] andSize:[uv_data length]];
+    //self.vboColors = [[SmartVBO alloc] initWithData:[color_data mutableBytes] andSize:[color_data length]];
     
-    glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(GLKVector2), 0);
+    //glEnableVertexAttribArray(GLKVertexAttribColor);
+    //glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(GLKVector4), 0);
+    
+    //Will be UVS eventually
+    //self.vboUVS = [[SmartVBO alloc] initWithData:[uv_data mutableBytes] andSize:[uv_data length]];
+    
+    //glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+    //glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(GLKVector2), 0);
     
     glBindVertexArrayOES(0);
 
@@ -122,10 +118,44 @@
     if (self) {
         self.columns = columns;
         self.rows = rows;
-        
+        self.vboUVS = nil;
+        self.vboVerts = nil;
+        self.vboColors = nil;
         [self createGrid];
     }
     return self;
+}
+
+- (void)rebind
+{
+    glBindVertexArrayOES(_vao);
+    
+    //glGenBuffers(1, &_vboVerts);
+    //glBindBuffer(GL_ARRAY_BUFFER, _vboVerts);
+    if (self.vboVerts) {
+        [self.vboVerts bind];
+    
+        glEnableVertexAttribArray(GLKVertexAttribPosition);
+        glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLKVector3), 0);
+    }
+    
+    if (self.vboColors) {
+        [self.vboColors bind];
+        glEnableVertexAttribArray(GLKVertexAttribColor);
+        glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(GLKVector4), 0);
+    }
+
+    
+    if (self.vboUVS) {
+        [self.vboUVS bind];
+        glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+        glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(GLKVector2), 0);
+    }
+    
+   
+    
+    glBindVertexArrayOES(0);
+
 }
 
 - (void)draw:(GLKMatrix4)currentMatrix

@@ -11,6 +11,6 @@
 @interface TextureAtlas : GameObject
 
 
-- (id)initWithTextureName:(Texture*)texture Width:(GLuint)width height:(GLuint)height;
+- (id)initWithTextureName:(NSString*)texture Width:(GLuint)width height:(GLuint)height;
 - (const GLvoid*)getTextureForID:(int)textureId;
 @end

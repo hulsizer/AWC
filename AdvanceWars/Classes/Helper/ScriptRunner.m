@@ -26,6 +26,9 @@ DECLARE_CALLBACK(createTextureAtlas)
 DECLARE_CALLBACK(addTileToTileMap)
 DECLARE_CALLBACK(createPositionComponent);
 DECLARE_CALLBACK(createEntity);
+DECLARE_CALLBACK(createTileMap)
+DECLARE_CALLBACK(updateCoordsForGridComponent)
+DECLARE_CALLBACK(updateNormalsForGridComponent)
 
 const char *REGISTRY_KEY_DIRECTOR = "director_key";
 const char *REGISTRY_KEY_COMPONENT = "component_key";
@@ -99,6 +102,9 @@ const char *REGISTRY_KEY_ENTITY = "entity_key";
     [self registerGlobalFunction:"addTileToTileMap" withFunction:addTileToTileMap];
     [self registerGlobalFunction:"createPositionComponent" withFunction:createPositionComponent];
     [self registerGlobalFunction:"createEntity" withFunction:createEntity];
+    [self registerGlobalFunction:"createTileMap" withFunction:createTileMap];
+    [self registerGlobalFunction:"updateCoordsForGridComponent" withFunction:updateCoordsForGridComponent];
+    [self registerGlobalFunction:"updateNormalsForGridComponent" withFunction:updateNormalsForGridComponent];
 }
 
 - (void)createNewTable:(const char*) tableName
@@ -171,15 +177,16 @@ int addTileToTileMap(lua_State *L)
 
 int createTextureAtlas(lua_State *L)
 {    
-    NSString *textureName = [NSString stringWithUTF8String:lua_tostring(L, -3)];
+    NSString *textureName = [NSString stringWithUTF8String:lua_tostring(L, -1)];
     int columns = lua_tonumber(L, -2);
-    int rows = lua_tonumber(L, -1);
+    int rows = lua_tonumber(L, -3);
     
-    TextureAtlas *textureAtlas = [[TextureAtlas alloc] initWithTextureName:nil Width:columns height:rows];
+    //Change this
+    TextureAtlas *textureAtlas = [[TextureAtlas alloc] initWithTextureName:textureName Width:columns height:rows];
     
-    pushObjectToTable(L, REGISTRY_KEY_TEXTURE_ATLAS, textureAtlas.gid);
+    //pushObjectToTable(L, REGISTRY_KEY_TEXTURE_ATLAS, textureAtlas.gid);
     
-	return 1;
+	return 0;
 }
 
 
@@ -192,6 +199,11 @@ int createEntity(lua_State *L)
     
     pushObjectToTable(L, REGISTRY_KEY_ENTITY, [newEntity.identifier intValue]);
     return 1;
+}
+
+int createTileMap(lua_State *L)
+{
+    return createGridComponent(L);
 }
 
 int createScene(lua_State *L)
@@ -222,6 +234,76 @@ int createPositionComponent(lua_State *L)
     return 0;
 }
 
+int updateNormalsForGridComponent(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    
+    GridDrawableComponent *component = [[director.scene objects] objectAtIndex:0];// [[GridDrawableComponent alloc] initWithGridColumns:0 gridRows:0];
+    int length = luaL_len(L,-1);							//[normals_table]
+    GLKVector2 *uvs = malloc(sizeof(GLKVector2)*length);
+	for(int i = 1; i <= length; i++)
+	{
+		lua_rawgeti(L,-1,i);								//[normals_table,vector_table]
+        
+        lua_rawgeti(L,-1,1);
+        float x = lua_tonumber(L,-1);
+        lua_pop(L,1);
+        
+        lua_rawgeti(L,-1,2);
+        float y = lua_tonumber(L,-1);
+		lua_pop(L,1);
+        
+        uvs[i-1] = GLKVector2Make(x, y);
+        
+		lua_pop(L,1);										//[normals_table]
+	}
+    
+    NSMutableData * data = [[NSMutableData alloc] initWithBytes:uvs length:sizeof(GLKVector2)*length];
+    SmartVBO *vbo = [[SmartVBO alloc] initWithData:[data mutableBytes] andSize:sizeof(GLKVector2)*length];
+    component.vboUVS = vbo;
+    
+    [component rebind];
+    
+	return 0;
+}
+
+int updateCoordsForGridComponent(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    
+    GridDrawableComponent *component = [[director.scene objects] objectAtIndex:0];
+    
+    int length = luaL_len(L,-1);							//[coords_table]
+    GLKVector3 *coords = malloc(sizeof(GLKVector3)*length);
+	for(int i = 1; i <= length; i++)
+	{
+		lua_rawgeti(L,-1,i);								//[coords_table,vector_table]
+        
+        lua_rawgeti(L,-1,1);
+        float x = lua_tonumber(L,-1);
+        lua_pop(L,1);
+        
+        lua_rawgeti(L,-1,2);
+        float y = lua_tonumber(L,-1);
+		lua_pop(L,1);
+        
+        //lua_rawgeti(L,-1,3);
+        //float z = lua_tonumber(L,-1);
+		//lua_pop(L,1);
+        NSLog(@"%f,%f",x,y);
+        coords[i-1] = GLKVector3Make(x, y, 0);
+        
+		lua_pop(L,1);										//[coords_table]
+	}
+    
+    NSMutableData * data = [[NSMutableData alloc] initWithBytes:coords length:sizeof(GLKVector3)*length];
+    SmartVBO *vbo = [[SmartVBO alloc] initWithData:[data mutableBytes] andSize:sizeof(GLKVector3)*length];
+    component.vboVerts = vbo;
+    
+    [component rebind];
+	return 0;
+}
+
 int createGridComponent(lua_State *L)
 {
     GameDirector *director = getDirector(L);
@@ -239,7 +321,6 @@ int createGridComponent(lua_State *L)
     
 	return 0;
 }
-
 int createPhysicsComponent(lua_State *L)
 {
     return 0;

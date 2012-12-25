@@ -20,11 +20,11 @@
 @implementation TextureAtlas
 @synthesize gid = _gid;
 
-- (id)initWithTextureName:(Texture*)texture Width:(GLuint)width height:(GLuint)height
+- (id)initWithTextureName:(NSString*)texture Width:(GLuint)width height:(GLuint)height
 {
     self = [super init];
     if (self) {
-        self.texture = texture;
+        self.texture = [[Texture alloc] initWithTextureName:texture];
         self.tileWidth = width;
         self.tileHeight = height;
         self.textures = [[NSMutableDictionary alloc] init];
