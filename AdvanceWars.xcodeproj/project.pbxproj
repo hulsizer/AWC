@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		526197541653D93000B3821F /* CMVertexAttribArrayBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 526197531653D93000B3821F /* CMVertexAttribArrayBuffer.m */; };
 		526197581653DABE00B3821F /* CMEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 526197571653DABE00B3821F /* CMEffect.m */; };
+		AF8D574C1687833F00C5631B /* EntityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8D574B1687833F00C5631B /* EntityManager.m */; };
+		AF8D5750168785B500C5631B /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8D574F168785B500C5631B /* Entity.m */; };
 		AF8EBB89166997C000944686 /* SmartVBO.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8EBB88166997C000944686 /* SmartVBO.m */; };
 		AF9D1098164CAA0A00D513C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1097164CAA0A00D513C4 /* UIKit.framework */; };
 		AF9D109A164CAA0A00D513C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1099164CAA0A00D513C4 /* Foundation.framework */; };
@@ -94,6 +96,10 @@
 		526197531653D93000B3821F /* CMVertexAttribArrayBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMVertexAttribArrayBuffer.m; path = Helper/CMVertexAttribArrayBuffer.m; sourceTree = "<group>"; };
 		526197561653DABE00B3821F /* CMEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMEffect.h; path = Helper/CMEffect.h; sourceTree = "<group>"; };
 		526197571653DABE00B3821F /* CMEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMEffect.m; path = Helper/CMEffect.m; sourceTree = "<group>"; };
+		AF8D574A1687833F00C5631B /* EntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityManager.h; sourceTree = "<group>"; };
+		AF8D574B1687833F00C5631B /* EntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityManager.m; sourceTree = "<group>"; };
+		AF8D574E168785B500C5631B /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		AF8D574F168785B500C5631B /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 		AF8EBB87166997C000944686 /* SmartVBO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SmartVBO.h; path = Graphics/SmartVBO.h; sourceTree = "<group>"; };
 		AF8EBB88166997C000944686 /* SmartVBO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmartVBO.m; path = Graphics/SmartVBO.m; sourceTree = "<group>"; };
 		AF9D1093164CAA0A00D513C4 /* AdvanceWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdvanceWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -501,6 +507,8 @@
 				AF9D12681651F55000D513C4 /* ShaderManager.m */,
 				AF9D12751657506000D513C4 /* TextureManager.h */,
 				AF9D12761657506000D513C4 /* TextureManager.m */,
+				AF8D574A1687833F00C5631B /* EntityManager.h */,
+				AF8D574B1687833F00C5631B /* EntityManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -522,6 +530,8 @@
 				AFCFD65D1650488C00980802 /* PositionComponent.m */,
 				AFCFD65F1650489D00980802 /* DrawableComponent.h */,
 				AFCFD6601650489D00980802 /* DrawableComponent.m */,
+				AF8D574E168785B500C5631B /* Entity.h */,
+				AF8D574F168785B500C5631B /* Entity.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -670,6 +680,8 @@
 				AFC794AC166EFABF00AF0B40 /* GameObject.m in Sources */,
 				AFC794AF166EFBB700AF0B40 /* TileMap.m in Sources */,
 				AFB3E754167C019D007612FA /* PerlinNoiseGenerator.m in Sources */,
+				AF8D574C1687833F00C5631B /* EntityManager.m in Sources */,
+				AF8D5750168785B500C5631B /* Entity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

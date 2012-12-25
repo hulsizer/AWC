@@ -11,6 +11,7 @@
 @class ScriptRunner;
 @class Scene;
 @class Component;
+@class EntityManager;
 
 
 @interface GameDirector : GLKViewController
@@ -23,4 +24,5 @@
 @property (nonatomic, strong) ScriptRunner *scriptRunner;
 @property (nonatomic, strong) NSMutableDictionary *components;
 @property (nonatomic, strong) Scene *scene;
+@property (nonatomic, strong) EntityManager *entityManager;
 @end

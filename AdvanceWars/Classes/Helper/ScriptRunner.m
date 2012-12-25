@@ -14,6 +14,8 @@
 #import "TextureAtlas.h"
 #import "Tile.h"
 #import "TileMap.h"
+#import "EntityManager.h"
+#import "Entity.h"
 
 #define DECLARE_CALLBACK(NAME) static int NAME(lua_State *L);
 
@@ -22,10 +24,13 @@ DECLARE_CALLBACK(createGridComponent)
 DECLARE_CALLBACK(createScene)
 DECLARE_CALLBACK(createTextureAtlas)
 DECLARE_CALLBACK(addTileToTileMap)
+DECLARE_CALLBACK(createPositionComponent);
+DECLARE_CALLBACK(createEntity);
 
 const char *REGISTRY_KEY_DIRECTOR = "director_key";
 const char *REGISTRY_KEY_COMPONENT = "component_key";
 const char *REGISTRY_KEY_TEXTURE_ATLAS = "textureatlas_key";
+const char *REGISTRY_KEY_ENTITY = "entity_key";
 
 @interface ScriptRunner()
 @property (nonatomic, assign) lua_State *L;
@@ -52,6 +57,7 @@ const char *REGISTRY_KEY_TEXTURE_ATLAS = "textureatlas_key";
         [self createNewTable:REGISTRY_KEY_DIRECTOR];
         [self createNewTable:REGISTRY_KEY_COMPONENT];
         [self createNewTable:REGISTRY_KEY_TEXTURE_ATLAS];
+        [self createNewTable:REGISTRY_KEY_ENTITY];
         
         lua_pushstring(_L,REGISTRY_KEY_DIRECTOR);                      //["table"]
         lua_pushlightuserdata(_L, (__bridge void *)(director));		//["table",{}]
@@ -91,6 +97,8 @@ const char *REGISTRY_KEY_TEXTURE_ATLAS = "textureatlas_key";
     [self registerGlobalFunction:"createScene" withFunction:createScene];
     [self registerGlobalFunction:"createTextureAtlas" withFunction:createTextureAtlas];
     [self registerGlobalFunction:"addTileToTileMap" withFunction:addTileToTileMap];
+    [self registerGlobalFunction:"createPositionComponent" withFunction:createPositionComponent];
+    [self registerGlobalFunction:"createEntity" withFunction:createEntity];
 }
 
 - (void)createNewTable:(const char*) tableName
@@ -174,6 +182,18 @@ int createTextureAtlas(lua_State *L)
 	return 1;
 }
 
+
+int createEntity(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    NSString *name = [NSString stringWithUTF8String:lua_tostring(L, -3)];
+    
+    Entity *newEntity = [director.entityManager newEntityWithName:name];
+    
+    pushObjectToTable(L, REGISTRY_KEY_ENTITY, [newEntity.identifier intValue]);
+    return 1;
+}
+
 int createScene(lua_State *L)
 {
     GameDirector *director = getDirector(L);
@@ -187,20 +207,34 @@ int createScene(lua_State *L)
     return 0;
 }
 
+int createPositionComponent(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    int entity_id = lua_tonumber(L, -3);
+    int x = lua_tonumber(L, -2);
+    int y = lua_tonumber(L, -1);
+    
+    PositionComponent *component = [[PositionComponent alloc] init];
+    component.point = CGPointMake(x,y);
+    
+    Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
+    [director.entityManager addComponent:component toEntity:entity];
+    return 0;
+}
+
 int createGridComponent(lua_State *L)
 {
     GameDirector *director = getDirector(L);
-    
+    int entity_id = lua_tonumber(L, -3);
     int columns = lua_tonumber(L, -2);
     int rows = lua_tonumber(L, -1);
     
     GridDrawableComponent *component = [[GridDrawableComponent alloc] initWithGridColumns:columns gridRows:rows];
     
-    PositionComponent *position = [[PositionComponent alloc] init];
-    position.point = CGPointMake(1, 1);
-    component.position = position;
+    Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
+    [director.entityManager addComponent:component toEntity:entity];
     
-    [director.scene registerObject:component];
+    //[director.scene registerObject:component];
     //pushObjectToTable(L, REGISTRY_KEY_COMPONENT, component.id);
     
 	return 0;
