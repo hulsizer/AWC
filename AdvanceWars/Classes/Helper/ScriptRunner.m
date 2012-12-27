@@ -193,7 +193,7 @@ int createTextureAtlas(lua_State *L)
 int createEntity(lua_State *L)
 {
     GameDirector *director = getDirector(L);
-    NSString *name = [NSString stringWithUTF8String:lua_tostring(L, -3)];
+    NSString *name = [NSString stringWithUTF8String:lua_tostring(L, -2)];
     
     Entity *newEntity = [director.entityManager newEntityWithName:name];
     
@@ -219,6 +219,88 @@ int createScene(lua_State *L)
     return 0;
 }
 
+int updateNormalsForGridComponent(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    int entity_id = lua_tonumber(L, -1);
+    Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
+    
+    GridDrawableComponent *component = [director.entityManager getComponentNamed:@"GridDrawableComponent" forEntity:entity];
+    
+    if (component) {
+        int length = luaL_len(L,-2);							//[normals_table]
+        GLKVector2 *uvs = malloc(sizeof(GLKVector2)*length);
+        for(int i = 1; i <= length; i++)
+        {
+            lua_rawgeti(L,-1,i);								//[normals_table,vector_table]
+            
+            lua_rawgeti(L,-1,1);
+            float x = lua_tonumber(L,-1);
+            lua_pop(L,1);
+            
+            lua_rawgeti(L,-1,2);
+            float y = lua_tonumber(L,-1);
+            lua_pop(L,1);
+            
+            uvs[i-1] = GLKVector2Make(x, y);
+            
+            lua_pop(L,1);										//[normals_table]
+        }
+        
+        NSMutableData * data = [[NSMutableData alloc] initWithBytes:uvs length:sizeof(GLKVector2)*length];
+        SmartVBO *vbo = [[SmartVBO alloc] initWithData:[data mutableBytes] andSize:sizeof(GLKVector2)*length];
+        component.vboUVS = vbo;
+        
+        [component rebind];
+    }
+   	return 0;
+}
+
+int updateCoordsForGridComponent(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    
+    int entity_id = lua_tonumber(L, -2);
+    Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
+    
+    GridDrawableComponent *component = [director.entityManager getComponentNamed:@"GridDrawableComponent" forEntity:entity];
+
+    
+    if (component) {
+        int length = luaL_len(L,-1);							//[coords_table]
+        GLKVector3 *coords = malloc(sizeof(GLKVector3)*length);
+        for(int i = 1; i <= length; i++)
+        {
+            lua_rawgeti(L,-1,i);								//[coords_table,vector_table]
+            
+            lua_rawgeti(L,-1,1);
+            float x = lua_tonumber(L,-1);
+            lua_pop(L,1);
+            
+            lua_rawgeti(L,-1,2);
+            float y = lua_tonumber(L,-1);
+            lua_pop(L,1);
+            
+            //lua_rawgeti(L,-1,3);
+            //float z = lua_tonumber(L,-1);
+            //lua_pop(L,1);
+            //NSLog(@"%f,%f",x,y);
+            coords[i-1] = GLKVector3Make(x, y, 0);
+            
+            lua_pop(L,1);										//[coords_table]
+        }
+        
+        NSMutableData * data = [[NSMutableData alloc] initWithBytes:coords length:sizeof(GLKVector3)*length];
+        SmartVBO *vbo = [[SmartVBO alloc] initWithData:[data mutableBytes] andSize:sizeof(GLKVector3)*length];
+        component.vboVerts = vbo;
+        
+        [component rebind];
+
+    }
+    
+    return 0;
+}
+
 int createPositionComponent(lua_State *L)
 {
     GameDirector *director = getDirector(L);
@@ -226,82 +308,17 @@ int createPositionComponent(lua_State *L)
     int x = lua_tonumber(L, -2);
     int y = lua_tonumber(L, -1);
     
-    PositionComponent *component = [[PositionComponent alloc] init];
-    component.point = CGPointMake(x,y);
+    PositionComponent *positionComponent = [[PositionComponent alloc] init];
+    positionComponent.point = CGPointMake(x,y);
     
     Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
-    [director.entityManager addComponent:component toEntity:entity];
+    
+    if (entity)
+    {
+        [director.entityManager addComponent:positionComponent toEntity:entity];
+    }
+    
     return 0;
-}
-
-int updateNormalsForGridComponent(lua_State *L)
-{
-    GameDirector *director = getDirector(L);
-    
-    GridDrawableComponent *component = [[director.scene objects] objectAtIndex:0];// [[GridDrawableComponent alloc] initWithGridColumns:0 gridRows:0];
-    int length = luaL_len(L,-1);							//[normals_table]
-    GLKVector2 *uvs = malloc(sizeof(GLKVector2)*length);
-	for(int i = 1; i <= length; i++)
-	{
-		lua_rawgeti(L,-1,i);								//[normals_table,vector_table]
-        
-        lua_rawgeti(L,-1,1);
-        float x = lua_tonumber(L,-1);
-        lua_pop(L,1);
-        
-        lua_rawgeti(L,-1,2);
-        float y = lua_tonumber(L,-1);
-		lua_pop(L,1);
-        
-        uvs[i-1] = GLKVector2Make(x, y);
-        
-		lua_pop(L,1);										//[normals_table]
-	}
-    
-    NSMutableData * data = [[NSMutableData alloc] initWithBytes:uvs length:sizeof(GLKVector2)*length];
-    SmartVBO *vbo = [[SmartVBO alloc] initWithData:[data mutableBytes] andSize:sizeof(GLKVector2)*length];
-    component.vboUVS = vbo;
-    
-    [component rebind];
-    
-	return 0;
-}
-
-int updateCoordsForGridComponent(lua_State *L)
-{
-    GameDirector *director = getDirector(L);
-    
-    GridDrawableComponent *component = [[director.scene objects] objectAtIndex:0];
-    
-    int length = luaL_len(L,-1);							//[coords_table]
-    GLKVector3 *coords = malloc(sizeof(GLKVector3)*length);
-	for(int i = 1; i <= length; i++)
-	{
-		lua_rawgeti(L,-1,i);								//[coords_table,vector_table]
-        
-        lua_rawgeti(L,-1,1);
-        float x = lua_tonumber(L,-1);
-        lua_pop(L,1);
-        
-        lua_rawgeti(L,-1,2);
-        float y = lua_tonumber(L,-1);
-		lua_pop(L,1);
-        
-        //lua_rawgeti(L,-1,3);
-        //float z = lua_tonumber(L,-1);
-		//lua_pop(L,1);
-        NSLog(@"%f,%f",x,y);
-        coords[i-1] = GLKVector3Make(x, y, 0);
-        
-		lua_pop(L,1);										//[coords_table]
-	}
-    
-    NSMutableData * data = [[NSMutableData alloc] initWithBytes:coords length:sizeof(GLKVector3)*length];
-    SmartVBO *vbo = [[SmartVBO alloc] initWithData:[data mutableBytes] andSize:sizeof(GLKVector3)*length];
-    component.vboVerts = vbo;
-    
-    [component rebind];
-	return 0;
 }
 
 int createGridComponent(lua_State *L)
@@ -314,7 +331,17 @@ int createGridComponent(lua_State *L)
     GridDrawableComponent *component = [[GridDrawableComponent alloc] initWithGridColumns:columns gridRows:rows];
     
     Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
-    [director.entityManager addComponent:component toEntity:entity];
+    
+    if (entity)
+    {
+        PositionComponent *position = [director.entityManager getComponentNamed:@"PositionComponent" forEntity:entity];
+        if (position) {
+            component.position = position;
+        }
+        [director.entityManager addComponent:component toEntity:entity];
+        [director.scene registerObject:component];
+    }
+    
     
     //[director.scene registerObject:component];
     //pushObjectToTable(L, REGISTRY_KEY_COMPONENT, component.id);

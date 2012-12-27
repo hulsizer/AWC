@@ -19,6 +19,7 @@
 #import "ScriptRunner.h"
 #import "GameObject.h"
 #import "Macros.h"
+#import "EntityManager.h"
 
 struct Vertex {
     GLKVector3 position;
@@ -100,7 +101,8 @@ struct Vertex {
     [self.scrollSubView addGestureRecognizer:self.scroll.pinchGestureRecognizer];
     [self.view addSubview:self.scrollSubView];
     
-     self.scriptRunner = [[ScriptRunner alloc] initWithDirector:self andScript:@"testImport"];
+    self.entityManager = [[EntityManager alloc] init];
+    self.scriptRunner = [[ScriptRunner alloc] initWithDirector:self andScript:@"testImport"];
 
 }
 

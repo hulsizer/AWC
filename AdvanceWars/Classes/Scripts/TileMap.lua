@@ -4,7 +4,10 @@ function TileMap:new(o)
 	o = o or {}
 	setmetatable(o,self)
 	self.__index = self
-	createTileMap(o.width,o.height)
+	self.id = createEntity("tile",self)
+	createPositionComponent(self.id,1,1)
+	createTileMap(self.id, o.width,o.height)
+	
 	return o
 end
 

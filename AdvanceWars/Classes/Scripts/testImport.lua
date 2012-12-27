@@ -11,7 +11,7 @@ local tileMapTextureIndices = {}
 local tileProperties = {}
 
 tileMapFile = dofile (pathOfThisFile .. "/Scripts/tester.lua")
-scene = Scene:new({width=30, height=30,verticalPadding=1,horizontalPadding=1})
+scene = Scene:new({width=tileMapFile.width, height=tileMapFile.height,verticalPadding=1,horizontalPadding=1})
 
 
 tileMap = TileMap:new({width=tileMapFile.width, height=tileMapFile.height})
@@ -63,5 +63,5 @@ end
 tileMap:createNormals()
 tileMap:createCoords()
 
-updateNormalsForGridComponent(tileMap.normals)
-updateCoordsForGridComponent(tileMap.coords)
+updateNormalsForGridComponent(tileMap.id,tileMap.normals)
+updateCoordsForGridComponent(tileMap.id,tileMap.coords)

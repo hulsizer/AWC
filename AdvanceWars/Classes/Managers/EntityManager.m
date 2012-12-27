@@ -40,6 +40,8 @@
     newEntity.name = name;
     newEntity.entityManager = self;
     
+    [self addEntity:newEntity];
+    
     return newEntity;
 }
 

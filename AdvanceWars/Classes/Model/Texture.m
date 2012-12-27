@@ -21,6 +21,7 @@
     self = [super init];
     if (self) {
         self.textureName = textureName;
+        [self.textureName stringByReplacingOccurrencesOfString:@".png" withString:@""];
         
         [self loadTexture];
     }
