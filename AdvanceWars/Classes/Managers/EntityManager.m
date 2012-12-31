@@ -80,10 +80,10 @@
 	
 	return output;}
 
-- (void) addComponent: (id) component toEntity: (Entity*) entity
+- (void) addComponent: (Component*) component toEntity: (Entity*) entity
 {
     // find the dictionary for the component
-	NSString* componentName = NSStringFromClass([component class]);
+	NSString* componentName = [component type];
 	NSMutableDictionary* componentDict = [self.components objectForKey: componentName];
 	
 	// create the component dictionary if it doesn't exist

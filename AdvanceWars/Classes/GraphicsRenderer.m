@@ -12,6 +12,7 @@
 #import "TextureManager.h"
 #import "TextureGroup.h"
 #import "Shader.h"
+
 @interface GraphicsRenderer()
 
 @property (nonatomic, strong) NSMutableDictionary *objects;
@@ -31,12 +32,12 @@
         {
             //Bind texture
             //or textures
-            TextureGroup *textureGroup = [[[TextureManager alloc] init] texturesForKey:textureDictionaryKey];
-            [textureGroup bind];
+            //TextureGroup *textureGroup = [[[TextureManager alloc] init] texturesForKey:textureDictionaryKey];
+            //[textureGroup bind];
             for (DrawableComponent *object in [[self.objects objectForKey:programDictionaryKey] objectForKey:textureDictionaryKey])
             {
                 //bind vertex attrib
-                [object draw:GLKMatrix4Identity];
+                [object draw:GLKMatrix4Identity mode:DMNORMAL];
             }
         }
     }

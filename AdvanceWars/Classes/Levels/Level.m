@@ -25,8 +25,8 @@
         self.scriptRunner = [[ScriptRunner alloc] initWithDirector:self andScript:fileName];
         
         self.components = [[NSMutableDictionary alloc] init];
-        [self.components setObject:[[NSMutableDictionary alloc] init] forKey:[NSNumber numberWithInt:e_PHYSICS]];
-        [self.components setObject:[[NSMutableDictionary alloc] init] forKey:[NSNumber numberWithInt:e_GRAPHICS]];
+        //[self.components setObject:[[NSMutableDictionary alloc] init] forKey:[NSNumber numberWithInt:e_PHYSICS]];
+        //[self.components setObject:[[NSMutableDictionary alloc] init] forKey:[NSNumber numberWithInt:e_GRAPHICS]];
     }
     return self;
 }
@@ -44,9 +44,9 @@
 
 - (void)update
 {
-    for (PositionComponent *component in [self.components objectForKey:[NSNumber numberWithInt:e_PHYSICS]]) {
-        [component update];
-    }
+    //for (PositionComponent *component in [self.components objectForKey:[NSNumber numberWithInt:e_PHYSICS]]) {
+    //    [component update];
+    //}
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
@@ -55,9 +55,9 @@
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     
-    for (DrawableComponent *component in [self.components objectForKey:[NSNumber numberWithInt:e_GRAPHICS]]) {
-        [component update];
-    }
+   // for (DrawableComponent *component in [self.components objectForKey:[NSNumber numberWithInt:e_GRAPHICS]]) {
+    ///    [component update];
+    //}
     
 }
 

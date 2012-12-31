@@ -8,7 +8,7 @@
 
 #import "Scene.h"
 #import "CMEffect.h"
-
+#import "DrawableComponent.h"
 @interface Scene()
 
 @property (nonatomic, assign) CGSize size;
@@ -65,12 +65,12 @@
     
     return camera;
 }
-- (void)draw
+- (void)drawWithMode:(enum DrawMode)mode
 {
     GLKMatrix4 camera = [self getCamera];
     //draw tree
     for (DrawableComponent *object in self.objects) {
-        [object draw:camera];
+        [object draw:camera mode:mode];
     }
 }
 @end

@@ -16,6 +16,10 @@
 #import "TileMap.h"
 #import "EntityManager.h"
 #import "Entity.h"
+#import "TextureManager.h"
+#import "CMEffect.h"
+#import "SubEntityComponent.h"
+#import "SubDrawableComponent.h"
 
 #define DECLARE_CALLBACK(NAME) static int NAME(lua_State *L);
 
@@ -29,6 +33,9 @@ DECLARE_CALLBACK(createEntity);
 DECLARE_CALLBACK(createTileMap)
 DECLARE_CALLBACK(updateCoordsForGridComponent)
 DECLARE_CALLBACK(updateNormalsForGridComponent)
+DECLARE_CALLBACK(bindTextureToEntity)
+DECLARE_CALLBACK(updateColorPickingColorsForGridComponent)
+DECLARE_CALLBACK(createSubDrawableComponent)
 
 const char *REGISTRY_KEY_DIRECTOR = "director_key";
 const char *REGISTRY_KEY_COMPONENT = "component_key";
@@ -105,6 +112,9 @@ const char *REGISTRY_KEY_ENTITY = "entity_key";
     [self registerGlobalFunction:"createTileMap" withFunction:createTileMap];
     [self registerGlobalFunction:"updateCoordsForGridComponent" withFunction:updateCoordsForGridComponent];
     [self registerGlobalFunction:"updateNormalsForGridComponent" withFunction:updateNormalsForGridComponent];
+    [self registerGlobalFunction:"updateColorPickingColorsForGridComponent" withFunction:updateColorPickingColorsForGridComponent];
+    [self registerGlobalFunction:"bindTextureToEntity" withFunction:bindTextureToEntity];
+    [self registerGlobalFunction:"createSubDrawableComponent" withFunction:createSubDrawableComponent];
 }
 
 - (void)createNewTable:(const char*) tableName
@@ -178,17 +188,27 @@ int addTileToTileMap(lua_State *L)
 int createTextureAtlas(lua_State *L)
 {    
     NSString *textureName = [NSString stringWithUTF8String:lua_tostring(L, -1)];
-    int columns = lua_tonumber(L, -2);
-    int rows = lua_tonumber(L, -3);
-    
-    //Change this
-    TextureAtlas *textureAtlas = [[TextureAtlas alloc] initWithTextureName:textureName Width:columns height:rows];
-    
-    //pushObjectToTable(L, REGISTRY_KEY_TEXTURE_ATLAS, textureAtlas.gid);
+
+    [[TextureManager sharedInstance] loadTextureWithName:textureName];
     
 	return 0;
 }
 
+int bindTextureToEntity(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    NSString *textureName = [NSString stringWithUTF8String:lua_tostring(L, -2)];
+    int entityID = lua_tonumber(L, -1);
+    
+    Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entityID]];
+    
+    GridDrawableComponent *grid = [director.entityManager getComponentNamed:@"DrawableComponent" forEntity:entity];
+    if (grid) {
+        grid.effect.texture2d0 = [[TextureManager sharedInstance] textureForName:textureName];
+    }
+
+    return 0;
+}
 
 int createEntity(lua_State *L)
 {
@@ -218,17 +238,62 @@ int createScene(lua_State *L)
     director.scene = component;
     return 0;
 }
+int updateColorPickingColorsForGridComponent(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    int entity_id = lua_tonumber(L, -2);
+    Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
+    
+    GridDrawableComponent *component = [director.entityManager getComponentNamed:@"DrawableComponent" forEntity:entity];
+    
+    if (component) {
+        int length = luaL_len(L,-1);							//[normals_table]
+        GLKVector4 *colors = malloc(sizeof(GLKVector4)*length*6);
+        for(int i = 1; i <= length; i++)
+        {
+            lua_rawgeti(L,-1,i);								//[normals_table,vector_table]
+            
+            lua_rawgeti(L,-1,1);
+            float r = lua_tonumber(L,-1);
+            lua_pop(L,1);
+            
+            lua_rawgeti(L,-1,2);
+            float g = lua_tonumber(L,-1);
+            lua_pop(L,1);
+            
+            lua_rawgeti(L,-1,2);
+            float b = lua_tonumber(L,-1);
+            lua_pop(L,1);
+            
+            colors[(i-1)*6+0] = GLKVector4Make(r,g,b,1);
+            colors[(i-1)*6+1] = GLKVector4Make(r,g,b,1);
+            colors[(i-1)*6+2] = GLKVector4Make(r,g,b,1);
+            colors[(i-1)*6+3] = GLKVector4Make(r,g,b,1);
+            colors[(i-1)*6+4] = GLKVector4Make(r,g,b,1);
+            colors[(i-1)*6+5] = GLKVector4Make(r,g,b,1);
+            
+            lua_pop(L,1);										//[normals_table]
+        }
+        
+        NSMutableData * data = [[NSMutableData alloc] initWithBytes:colors length:sizeof(GLKVector4)*length*6];
+        SmartVBO *vbo = [[SmartVBO alloc] initWithData:[data mutableBytes] andSize:sizeof(GLKVector4)*length*6];
+        component.vboColors = vbo;
+        
+        [component rebind];
+    }
+   	return 0;
+}
 
 int updateNormalsForGridComponent(lua_State *L)
 {
     GameDirector *director = getDirector(L);
-    int entity_id = lua_tonumber(L, -1);
+    int entity_id = lua_tonumber(L, -2);
     Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
     
-    GridDrawableComponent *component = [director.entityManager getComponentNamed:@"GridDrawableComponent" forEntity:entity];
+    GridDrawableComponent *component = [director.entityManager getComponentNamed:@"DrawableComponent" forEntity:entity];
     
     if (component) {
-        int length = luaL_len(L,-2);							//[normals_table]
+        int length = luaL_len(L,-1);							//[normals_table]
         GLKVector2 *uvs = malloc(sizeof(GLKVector2)*length);
         for(int i = 1; i <= length; i++)
         {
@@ -263,7 +328,7 @@ int updateCoordsForGridComponent(lua_State *L)
     int entity_id = lua_tonumber(L, -2);
     Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
     
-    GridDrawableComponent *component = [director.entityManager getComponentNamed:@"GridDrawableComponent" forEntity:entity];
+    GridDrawableComponent *component = [director.entityManager getComponentNamed:@"DrawableComponent" forEntity:entity];
 
     
     if (component) {
@@ -301,6 +366,39 @@ int updateCoordsForGridComponent(lua_State *L)
     return 0;
 }
 
+int addSubEntityToEntity(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    int parent_entity_id = lua_tonumber(L, -3);
+    int entity_id = lua_tonumber(L, -3);
+    
+    Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
+    Entity *parentEntity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:parent_entity_id]];
+    
+    if (entity && parentEntity)
+    {
+        //[director.entityManager addComponent:subEntityComponent toEntity:entity];
+    }
+
+    return 0;
+}
+
+int createSubEntityComponent(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    int entity_id = lua_tonumber(L, -3);
+    
+    Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
+    
+    if (entity)
+    {
+        SubEntityComponent *subEntityComponent = [[SubEntityComponent alloc] init];
+        [director.entityManager addComponent:subEntityComponent toEntity:entity];
+    }
+    
+    return 0;
+}
+
 int createPositionComponent(lua_State *L)
 {
     GameDirector *director = getDirector(L);
@@ -318,6 +416,26 @@ int createPositionComponent(lua_State *L)
         [director.entityManager addComponent:positionComponent toEntity:entity];
     }
     
+    return 0;
+}
+
+int createSubDrawableComponent(lua_State *L)
+{
+    GameDirector *director = getDirector(L);
+    int entity_id = lua_tonumber(L, -3);
+    int parent_entity_id = lua_tonumber(L, -2);
+    int index = lua_tonumber(L, -1);
+    
+    Entity *entity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:entity_id]];
+    Entity *parentEntity = [director.entityManager getEntityByIdentifier:[NSNumber numberWithInt:parent_entity_id]];
+    
+    DrawableComponent *component = [director.entityManager getComponentNamed:@"DrawableComponent" forEntity:parentEntity];
+    
+    SubDrawableComponent *newComponent = [[SubDrawableComponent alloc] init];
+    newComponent.parent = component;
+    newComponent.index = index;
+    
+    [director.entityManager addComponent:newComponent toEntity:entity];
     return 0;
 }
 

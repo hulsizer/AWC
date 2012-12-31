@@ -158,7 +158,7 @@ struct Vertex {
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     
-    [self.scene draw];
+    [self.scene drawWithMode:DMNORMAL];
 }
 
 - (void)display
@@ -170,18 +170,58 @@ struct Vertex {
 #pragma mark - Object Managment
 - (void)registerObject:(Component*)object
 {
-    if (object.type == e_GRAPHICS) {
-        [self.scene registerObject:(DrawableComponent*)object];
-    }
+    //if (object.type == e_GRAPHICS) {
+    //    [self.scene registerObject:(DrawableComponent*)object];
+    //}
 }
 
 - (void)deregisterObject:(Component*)object
 {
-    if (object.type == e_GRAPHICS) {
-        [self.scene deregisterObject:(DrawableComponent*)object];
-    }
+    //if (object.type == e_GRAPHICS) {
+    //    [self.scene deregisterObject:(DrawableComponent*)object];
+    //}
 }
 
+- (NSUInteger)findSealByPoint:(CGPoint)point
+{
+    NSInteger height = ((GLKView *)self.view).drawableHeight;
+    NSInteger width = ((GLKView *)self.view).drawableWidth;
+    Byte pixelColor[4] = {0,};
+    GLuint colorRenderbuffer;
+    GLuint framebuffer;
+    
+    glGenFramebuffers(1, &framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    glGenRenderbuffers(1, &colorRenderbuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
+    
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_RGBA8_OES, width, height);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0_OES, GL_RENDERBUFFER, colorRenderbuffer);
+    
+    GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    if (status != GL_FRAMEBUFFER_COMPLETE) {
+        NSLog(@"Framebuffer status: %x", (int)status);
+        return 0;
+    }
+    
+    [self.scene drawWithMode:DMSELECT];
+    
+    CGFloat scale = UIScreen.mainScreen.scale;
+    glReadPixels(point.x * scale, (height - (point.y * scale)), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixelColor);
+    
+    glDeleteRenderbuffers(1, &colorRenderbuffer);
+    glDeleteFramebuffers(1, &framebuffer);
+    
+    return pixelColor[0];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self.view];
+
+    [self findSealByPoint:touchPoint];
+}
 #pragma mark - ScrollView delegates
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView

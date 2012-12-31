@@ -6,11 +6,12 @@ dofile (pathOfThisFile .. "/Scripts/TileMap.lua")
 dofile (pathOfThisFile .. "/Scripts/TextureAtlas.lua")
 dofile (pathOfThisFile .. "/Scripts/Scene.lua")
 dofile (pathOfThisFile .. "/Scripts/utilites.lua")
+dofile (pathOfThisFile .. "/Scripts/ColorPickingGenerator.lua")
 
 local tileMapTextureIndices = {}
 local tileProperties = {}
 
-tileMapFile = dofile (pathOfThisFile .. "/Scripts/tester.lua")
+tileMapFile = dofile (pathOfThisFile .. "/Scripts/couch.lua")
 scene = Scene:new({width=tileMapFile.width, height=tileMapFile.height,verticalPadding=1,horizontalPadding=1})
 
 
@@ -24,6 +25,7 @@ for index,value in ipairs(tileMapFile.tilesets) do
 	--Create texture map
 	
 	textureAtlas = TextureAtlas:new(value)
+	bindTextureToEntity(value.image, tileMap.id)
 	textureAtlas:createNormals()
 	
 	-- create reference map for tiles
@@ -47,21 +49,26 @@ for index,layer in ipairs(tileMapFile.layers) do
 		newTile.textureAtlas = tileMapTextureIndices[tileID]
 		newTile.normals = textureAtlas.normals[tileID]
 		newTile.coords = {{width,height},{width+1,height},{width+1,height+1},{width+1,height+1},{width,height+1},{width,height}}
+		newTile.colorPickingColor = ColorPickingGenerator:getColor()
 		tileMap:addTile(newTile)
+		newTile:createDrawableComponent()
+		
 				
-		height = height + 1
-		if(height >= tileMapFile.height) then
-			if(width > tileMapFile.width+1) then
+		width = width + 1
+		if(width >= tileMapFile.width) then
+			if(height > tileMapFile.height+1) then
 				return
 			end
-			height = 0
-			width = width + 1
+			width = 0
+			height = height + 1
 		end
 	end	
 end
 
 tileMap:createNormals()
 tileMap:createCoords()
+tileMap:createColorPickingColors()
 
 updateNormalsForGridComponent(tileMap.id,tileMap.normals)
 updateCoordsForGridComponent(tileMap.id,tileMap.coords)
+updateColorPickingColorsForGridComponent(tileMap.id,tileMap.colors)

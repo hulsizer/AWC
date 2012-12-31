@@ -76,6 +76,9 @@
 		AF9D12901658427C00D513C4 /* basic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D128C16583D4900D513C4 /* basic.fsh */; };
 		AF9D12911658427F00D513C4 /* basic.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AF9D128D16583D4900D513C4 /* basic.vsh */; };
 		AF9D1298165B134900D513C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D1297165B134900D513C4 /* QuartzCore.framework */; };
+		AF9F5548168E7E5A00997020 /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = AF9F5547168E7E5A00997020 /* yellow.png */; };
+		AF9F554C1690EF5600997020 /* SubEntityComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9F554B1690EF5600997020 /* SubEntityComponent.m */; };
+		AF9F554F1690F93A00997020 /* SubDrawableComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9F554E1690F93A00997020 /* SubDrawableComponent.m */; };
 		AFA86E941682D88A00910C71 /* testTextureMap.png in Resources */ = {isa = PBXBuildFile; fileRef = AFA86E931682D88A00910C71 /* testTextureMap.png */; };
 		AFB3E754167C019D007612FA /* PerlinNoiseGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3E753167C019D007612FA /* PerlinNoiseGenerator.m */; };
 		AFC79499166D869B00AF0B40 /* TextureAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC79498166D869B00AF0B40 /* TextureAtlas.m */; };
@@ -97,11 +100,11 @@
 		526197531653D93000B3821F /* CMVertexAttribArrayBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMVertexAttribArrayBuffer.m; path = Helper/CMVertexAttribArrayBuffer.m; sourceTree = "<group>"; };
 		526197561653DABE00B3821F /* CMEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMEffect.h; path = Helper/CMEffect.h; sourceTree = "<group>"; };
 		526197571653DABE00B3821F /* CMEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMEffect.m; path = Helper/CMEffect.m; sourceTree = "<group>"; };
+		526C6FD91680B6DC00EA460C /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		AF8D574A1687833F00C5631B /* EntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityManager.h; sourceTree = "<group>"; };
 		AF8D574B1687833F00C5631B /* EntityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityManager.m; sourceTree = "<group>"; };
 		AF8D574E168785B500C5631B /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		AF8D574F168785B500C5631B /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
-		526C6FD91680B6DC00EA460C /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		AF8EBB87166997C000944686 /* SmartVBO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SmartVBO.h; path = Graphics/SmartVBO.h; sourceTree = "<group>"; };
 		AF8EBB88166997C000944686 /* SmartVBO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmartVBO.m; path = Graphics/SmartVBO.m; sourceTree = "<group>"; };
 		AF9D1093164CAA0A00D513C4 /* AdvanceWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdvanceWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +211,11 @@
 		AF9D128C16583D4900D513C4 /* basic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.fsh; sourceTree = "<group>"; };
 		AF9D128D16583D4900D513C4 /* basic.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = basic.vsh; sourceTree = "<group>"; };
 		AF9D1297165B134900D513C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AF9F5547168E7E5A00997020 /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow.png; sourceTree = "<group>"; };
+		AF9F554A1690EF5600997020 /* SubEntityComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubEntityComponent.h; sourceTree = "<group>"; };
+		AF9F554B1690EF5600997020 /* SubEntityComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubEntityComponent.m; sourceTree = "<group>"; };
+		AF9F554D1690F93A00997020 /* SubDrawableComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubDrawableComponent.h; sourceTree = "<group>"; };
+		AF9F554E1690F93A00997020 /* SubDrawableComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubDrawableComponent.m; sourceTree = "<group>"; };
 		AFA86E931682D88A00910C71 /* testTextureMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testTextureMap.png; sourceTree = "<group>"; };
 		AFB3E752167C019D007612FA /* PerlinNoiseGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PerlinNoiseGenerator.h; path = Graphics/PerlinNoiseGenerator.h; sourceTree = "<group>"; };
 		AFB3E753167C019D007612FA /* PerlinNoiseGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PerlinNoiseGenerator.m; path = Graphics/PerlinNoiseGenerator.m; sourceTree = "<group>"; };
@@ -307,6 +315,7 @@
 		AF9D10A2164CAA0A00D513C4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF9F5547168E7E5A00997020 /* yellow.png */,
 				AFA86E931682D88A00910C71 /* testTextureMap.png */,
 				AFF192A01663187900D86882 /* testTexture.png */,
 				AF9D10A3164CAA0A00D513C4 /* AdvanceWars-Info.plist */,
@@ -501,6 +510,8 @@
 			children = (
 				AF9D12631651F47300D513C4 /* GridDrawableComponent.h */,
 				AF9D12641651F47300D513C4 /* GridDrawableComponent.m */,
+				AF9F554D1690F93A00997020 /* SubDrawableComponent.h */,
+				AF9F554E1690F93A00997020 /* SubDrawableComponent.m */,
 			);
 			path = DrawableComponets;
 			sourceTree = "<group>";
@@ -537,6 +548,8 @@
 				AFCFD6601650489D00980802 /* DrawableComponent.m */,
 				AF8D574E168785B500C5631B /* Entity.h */,
 				AF8D574F168785B500C5631B /* Entity.m */,
+				AF9F554A1690EF5600997020 /* SubEntityComponent.h */,
+				AF9F554B1690EF5600997020 /* SubEntityComponent.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -613,6 +626,7 @@
 				AF9D12901658427C00D513C4 /* basic.fsh in Resources */,
 				AFF192A11663187900D86882 /* testTexture.png in Resources */,
 				AFA86E941682D88A00910C71 /* testTextureMap.png in Resources */,
+				AF9F5548168E7E5A00997020 /* yellow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +702,8 @@
 				AFB3E754167C019D007612FA /* PerlinNoiseGenerator.m in Sources */,
 				AF8D574C1687833F00C5631B /* EntityManager.m in Sources */,
 				AF8D5750168785B500C5631B /* Entity.m in Sources */,
+				AF9F554C1690EF5600997020 /* SubEntityComponent.m in Sources */,
+				AF9F554F1690F93A00997020 /* SubDrawableComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

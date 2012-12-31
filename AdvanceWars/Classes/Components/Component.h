@@ -7,22 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef enum
-{
-    e_PHYSICS,
-    e_GRAPHICS,
-    e_CUSTOM,
-    e_COUNT
-}COMPONENT_TYPE;
 
 @interface Component : NSObject
 {
-    COMPONENT_TYPE type;
-    uint id;
+    NSString* type;
 }
 
 - (void)update;
 
-@property (nonatomic, readonly) uint id;
-@property (nonatomic, readonly) COMPONENT_TYPE type;
+@property (nonatomic, readonly) NSString* type;
 @end

@@ -19,14 +19,14 @@ function TextureAtlas:createNormals()
 	--Wrong need to be devided by rows and columns
 	local numberOfColumns = self.imagewidth/self.tilewidth
 	local numberOfRows = self.imageheight/self.tileheight
-	for i = 0, numberOfColumns, 1 do
-		for j = 0, numberOfRows, 1 do
-			self.normals[i*(numberOfColumns)+j] ={{i/numberOfRows,j/numberOfColumns,0},
-												{(i+1)/numberOfRows,j/numberOfColumns,0},
-												{(i+1)/numberOfRows,(j+1)/numberOfColumns,0},
-												{(i+1)/numberOfRows,(j+1)/numberOfColumns,0},
-												{i/numberOfRows,(j+1)/numberOfColumns,0},
-												{i/numberOfRows,j/numberOfColumns,0}}
+	for j = 0, numberOfColumns-1, 1 do
+		for i = 0, numberOfRows-1, 1 do
+			self.normals[i+(numberOfColumns)*j+1] ={{(i/numberOfColumns)+.01,(j/numberOfRows)+.01},
+												{((i+1)/numberOfColumns)-0.01,(j/numberOfRows)+.01},
+												{((i+1)/numberOfColumns)-0.01,((j+1)/numberOfRows)-0.01},
+												{((i+1)/numberOfColumns)-0.01,((j+1)/numberOfRows)-0.01},
+												{(i/numberOfColumns)+0.01,((j+1)/numberOfRows)-0.01},
+												{(i/numberOfColumns)+0.01,(j/numberOfRows)+0.01}}
 		end
 	end
 end

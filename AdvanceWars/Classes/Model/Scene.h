@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DrawableComponent.h"
+
+enum DrawMode {
+    DMNORMAL = 0,
+    DMSELECT
+};
+@class DrawableComponent;
 @interface Scene : NSObject
 
 - (id)initWithProjection:(GLKMatrix4)projectionMatrix size:(CGSize)size;
@@ -24,5 +29,5 @@
 - (CGSize)getSize;
 - (void)registerObject:(DrawableComponent*)object;
 - (void)deregisterObject:(DrawableComponent*)object;
-- (void)draw;
+- (void)drawWithMode:(enum DrawMode)mode;
 @end

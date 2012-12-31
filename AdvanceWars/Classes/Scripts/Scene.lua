@@ -5,7 +5,7 @@ function Scene:new(o)
 	setmetatable(o,self)
 	self.__index = self
 	print(o.width)
-	createScene(o.width,o.height)
+	createScene(o.width+o.horizontalPadding*2,o.height+o.verticalPadding*2)
 	return o
 end
 

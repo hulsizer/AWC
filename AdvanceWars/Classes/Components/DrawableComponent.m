@@ -24,24 +24,65 @@
     self = [super init];
     if (self) {
         _effect = [[CMEffect alloc] init];
-        type = e_GRAPHICS;
+        type = @"DrawableComponent";
+        self.vboUVS = nil;
+        self.vboVerts = nil;
+        self.vboColors = nil;
+        glGenVertexArraysOES(1, &_vao);
+        glBindVertexArrayOES(_vao);
     }
     return self;
 }
-- (void)draw:(GLKMatrix4) currentMatrix
+
+- (void)rebind
 {
-    //TODO: Optimization would be to not calulate this every time but rather only recalculate when the position moves
-    //set up modelView matrix;
+    glBindVertexArrayOES(_vao);
+    
+    //glGenBuffers(1, &_vboVerts);
+    //glBindBuffer(GL_ARRAY_BUFFER, _vboVerts);
+    if (self.vboVerts) {
+        [self.vboVerts bind];
+        
+        glEnableVertexAttribArray(GLKVertexAttribPosition);
+        glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLKVector3), 0);
+    }
+    
+    if (self.vboColors) {
+        [self.vboColors bind];
+        glEnableVertexAttribArray(GLKVertexAttribColor);
+        glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(GLKVector4), 0);
+    }
+    
+    
+    if (self.vboUVS) {
+        [self.vboUVS bind];
+        glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+        glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(GLKVector2), 0);
+    }
+    
+    
+    
+    glBindVertexArrayOES(0);
+    
+}
+
+- (void)draw:(GLKMatrix4) currentMatrix mode:(enum DrawMode)mode
+{
     GLKMatrix4 modelViewMatrix = currentMatrix;
     modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, self.position.point.x, self.position.point.y, 0);
     
     //assign the new model view matrix
     self.effect.transform.modelviewMatrix = modelViewMatrix;
-    //bind all glUniforms
-    //calculate matrix
-    [self.effect prepareToDraw];
-    [self.verts prepareToDrawWithAttrib:GLKVertexAttribPosition numberOfCoordinates:2 attribOffset:0 shouldEnable:YES];
+    [self.effect bindProgram];
+    [self.effect bindTextures];
+    [self.effect bindUniforms];
     
-    [self.verts drawArrayWithMode:GL_TRIANGLES startVertexIndex:0 numberOfVertices: self.numberOfVerts];
+    
+    
+    glBindVertexArrayOES(_vao);
+    
+    glDrawArrays(GL_TRIANGLES, 0, self.numberOfVerts);
+    
+    glBindVertexArrayOES(0);
 }
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "Texture.h"
+#import "TextureManager.h"
 
 @interface Texture ()
 @property (nonatomic, strong) NSString *textureName;
@@ -20,8 +21,7 @@
 {
     self = [super init];
     if (self) {
-        self.textureName = textureName;
-        [self.textureName stringByReplacingOccurrencesOfString:@".png" withString:@""];
+        self.textureName = [textureName stringByReplacingOccurrencesOfString:@".png" withString:@""];
         
         [self loadTexture];
     }
@@ -34,6 +34,8 @@
     glBindTexture(GL_TEXTURE_2D, _texID);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
     
     NSString *path = [[NSBundle mainBundle] pathForResource:self.textureName ofType:@"png"];
     NSData *texData = [[NSData alloc] initWithContentsOfFile:path];

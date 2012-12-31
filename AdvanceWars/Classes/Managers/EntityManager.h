@@ -18,7 +18,7 @@
 - (Entity*)getEntityByIdentifier:(NSNumber*)identifier;
 - (NSArray*) findEntitiesWithComponentNamed: (NSString*) componentName;
 
-- (void) addComponent: (id) component toEntity: (Entity*) entity;
+- (void) addComponent: (Component*) component toEntity: (Entity*) entity;
 - (void) removeComponentNamed: (NSString*) componentName fromEntity: (Entity*) entity;
 - (BOOL) doesEntity: (Entity*) entity haveComponentNamed: (NSString*) componentName;
 - (id) getComponentNamed: (NSString*) componentName forEntity: (Entity*) entity;

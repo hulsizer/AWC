@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 @class TextureGroup;
+@class Texture;
 @interface TextureManager : NSObject
-
-- (TextureGroup*)texturesForKey:(NSString*)key;
++ (TextureManager*)sharedInstance;
+- (void)loadTextureWithName:(NSString*)name;
+- (Texture*)textureForName:(NSString*)name;
+@property (nonatomic, strong) NSMutableDictionary *textures;
 @end

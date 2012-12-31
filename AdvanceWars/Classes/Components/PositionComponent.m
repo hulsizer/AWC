@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        type = e_PHYSICS;
+        type = @"PositionComponent";
     }
     return self;
 }

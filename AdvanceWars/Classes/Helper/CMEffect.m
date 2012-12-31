@@ -9,7 +9,7 @@
 #import "CMEffect.h"
 #import "ShaderManager.h"
 #import "PerlinNoiseGenerator.h"
-
+#import "Texture.h"
 /////////////////////////////////////////////////////////////////
 // GLSL program uniform indices.
 typedef enum
@@ -73,8 +73,6 @@ typedef enum
     {
         _textureMatrix2d0 = GLKMatrix4Identity;
         _textureMatrix2d1 = GLKMatrix4Identity;
-        self.texture2d0.enabled = GL_TRUE;
-        self.texture2d1.enabled = GL_FALSE;
         self.material.ambientColor = GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
         self.lightModelAmbientColor = GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
         self.light0.enabled = GL_FALSE;
@@ -111,39 +109,41 @@ typedef enum
 
 - (void)loadTexture
 {
-    _texture2d0 = [[GLKEffectPropertyTexture alloc] init];
+   // _texture2d0 = [[Texture alloc] initWithTextureName:@"yellow"];
     
-    GLuint text_id;
-    glGenBuffers(1, &text_id);
-    glBindTexture(GL_TEXTURE_2D, text_id);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"testTextureMap" ofType:@"png"];
-    NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
-    UIImage *image = [[UIImage alloc] initWithData:texData];
-    if (image == nil)
-        NSLog(@"Do real error checking here");
-    
-    GLuint width = CGImageGetWidth(image.CGImage);
-    GLuint height = CGImageGetHeight(image.CGImage);
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    void *imageData = malloc( height * width * 4 );
-    CGContextRef context = CGBitmapContextCreate( imageData, width, height, 8, 4 * width, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big );
-    CGColorSpaceRelease( colorSpace );
-    CGContextClearRect( context, CGRectMake( 0, 0, width, height ) );
-    CGContextTranslateCTM( context, 0, height - height );
-    CGContextDrawImage( context, CGRectMake( 0, 0, width, height ), image.CGImage );
-    
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
-    
-    CGContextRelease(context);
-    
-    free(imageData);
-    
-    //GLuint test = [PerlinNoiseGenerator generateMap:25 height:32];
-    _texture2d0.name = text_id;//[PerlinNoiseGenerator generateMap:256 height:256];
-    _texture2d0.enabled = GL_TRUE;
+//    GLuint text_id;
+//    glGenBuffers(1, &text_id);
+//    glBindTexture(GL_TEXTURE_2D, text_id);
+//    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+//    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+//    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+//    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+//    
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"yellow" ofType:@"png"];
+//    NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
+//    UIImage *image = [[UIImage alloc] initWithData:texData];
+//    if (image == nil)
+//        NSLog(@"Do real error checking here");
+//    
+//    GLuint width = CGImageGetWidth(image.CGImage);
+//    GLuint height = CGImageGetHeight(image.CGImage);
+//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+//    void *imageData = malloc( height * width * 4 );
+//    CGContextRef context = CGBitmapContextCreate( imageData, width, height, 8, 4 * width, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big );
+//    CGColorSpaceRelease( colorSpace );
+//    CGContextClearRect( context, CGRectMake( 0, 0, width, height ) );
+//    CGContextTranslateCTM( context, 0, height - height );
+//    CGContextDrawImage( context, CGRectMake( 0, 0, width, height ), image.CGImage );
+//    
+//    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
+//    
+//    CGContextRelease(context);
+//    
+//    free(imageData);
+//    
+//    //GLuint test = [PerlinNoiseGenerator generateMap:25 height:32];
+//    _texture2d0.tex = text_id;//[PerlinNoiseGenerator generateMap:256 height:256];
+//    _texture2d0.enabled = GL_TRUE;
 }
 
 - (void)bindProgram
@@ -162,9 +162,9 @@ typedef enum
     
     // Bind all of the textures to their respective units
     glActiveTexture(GL_TEXTURE0);
-    if(0 != self.texture2d0.name && self.texture2d0.enabled)
+    if(self.texture2d0)
     {
-        glBindTexture(GL_TEXTURE_2D, self.texture2d0.name);
+        [self.texture2d0 bind];
     }
     else
     {
